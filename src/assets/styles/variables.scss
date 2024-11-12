@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'PyeongChang Peace';
+    src: url('@/assets/fonts/PyeongChangPeace-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('@/assets/fonts/DungGeunMo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  ul,li,ol{
+    list-style: none;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+  }
+  
+  :root {
+    --color-primary: #1CFF9C;
+    --color-background-black01: #0F1114;
+    --color-background-black02: #1B1D22;
+    --color-background-black03: #191F28;
+    --color-background-gray01: #45474B;
+    --color-background-white01: #f7f7f7;
+    --color-black01: #242424;
+    --color-black02: #3A3A3B;
+    --color-gray01: #C7C9CC;
+    --color-white01: #f7f7f7;
+    --pc: 1200px;
+    --tablet: 768px;
+    --mobile: 480px;
+    --font-primary: 'DungGeunMo', sans-serif;
+    --font-title: 'PyeongChang Peace', sans-serif;
+  }
+  
+  
+  
