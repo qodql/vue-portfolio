@@ -1,0 +1,19 @@
+.skill-modal {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    background-color: var(--color-background-white01);
+    z-index: 9;
+    .skill-modal-inner {
+        h5 {
+
+        }
+        p {
+            
+        }
+    }
+}

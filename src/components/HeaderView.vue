@@ -7,9 +7,9 @@
           </a>
         </div>
         <nav class="nav">
-          <a href="#">인터뷰</a>
-          <a href="#">기술</a>
-          <a href="#">프로젝트</a>
+          <a href="#intro">인터뷰</a>
+          <a href="#skill">기술</a>
+          <a href="#project">프로젝트</a>
         </nav>
       </div>
     </header>
@@ -28,5 +28,5 @@
 </script>
 
 <style lang="scss">
-@import "../assets/styles/Header.scss";
+
 </style>

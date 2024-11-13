@@ -10,7 +10,12 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/assets/styles/Header.scss";`
+        additionalData: `
+          @import "@/assets/styles/Header.scss";
+          @import "@/assets/styles/Main.scss";
+          @import "@/assets/styles/Footer.scss";
+          @import "@/assets/styles/SkillModal.scss";
+        `
       }
     }
   },
