@@ -149,6 +149,8 @@
                         1024: { slidesPerView: 3, spaceBetween: 40 },
                     }"
                     pagination
+                    navigation
+                    mousewheel
                     class="project-list"
                 >
                     <swiper-slide v-for="(project, index) in projects" :key="index" class="project-item">
@@ -180,9 +182,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination, Navigation, Mousewheel } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/mousewheel'
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
 import SkillModalView from '@/components/SkillModalView.vue';
@@ -200,6 +204,7 @@ const skillDetails = {
 const projects = [
     { title: '다온', description: '웹 리뉴얼 프로젝트', image: new URL('./assets/img/img-project01.png', import.meta.url).href, isResponsive: true },
     { title: '책이음', description: 'Next.js PWA 개발 프로젝트', image: new URL('./assets/img/img-project02.png', import.meta.url).href, isMobile: true },
+    { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isResponsive: true,  },
     { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isResponsive: true,  },
 ];
 

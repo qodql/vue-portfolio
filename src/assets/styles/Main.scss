@@ -305,7 +305,7 @@
                 padding-bottom: 80px;
             }
             .project-list {
-                width: 100%;
+                width: calc(100% + 600px);
                 display: flex;
                 gap: 40px;
                 .project-item {
