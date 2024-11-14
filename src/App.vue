@@ -149,8 +149,8 @@
                         1024: { slidesPerView: 3, spaceBetween: 40 },
                     }"
                     pagination
-                    navigation
                     mousewheel
+                    :scrollbar="{ el: '.project-scrollbar', draggable: true }"
                     class="project-list"
                 >
                     <swiper-slide v-for="(project, index) in projects" :key="index" class="project-item">
@@ -161,9 +161,9 @@
                             <p class="project-item-title">{{ project.title }}</p>
                             <p>{{ project.description }}</p>
                             <div class="kind">
-                                <span v-if="project.isMobile" class="mobile">모바일</span>
+                                <span v-if="project.isWeb">PC</span>
                                 <span v-if="project.isResponsive" class="reaction">반응형</span>
-                                <span v-else>PC</span>
+                                <span v-if="project.isMobile" class="mobile">모바일</span>
                             </div>
                         </div>
                     </swiper-slide>
@@ -180,13 +180,14 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Navigation, Mousewheel } from 'swiper';
+import { Pagination, Mousewheel, Scrollbar } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/mousewheel'
+import 'swiper/css/mousewheel';
+import 'swiper/css/scrollbar';
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
 import SkillModalView from '@/components/SkillModalView.vue';
@@ -202,10 +203,10 @@ const skillDetails = {
 };
 
 const projects = [
-    { title: '다온', description: '웹 리뉴얼 프로젝트', image: new URL('./assets/img/img-project01.png', import.meta.url).href, isResponsive: true },
+    { title: '다온', description: '웹 리뉴얼 프로젝트', image: new URL('./assets/img/img-project01.png', import.meta.url).href, isWeb: true, isResponsive: true },
     { title: '책이음', description: 'Next.js PWA 개발 프로젝트', image: new URL('./assets/img/img-project02.png', import.meta.url).href, isMobile: true },
-    { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isResponsive: true,  },
-    { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isResponsive: true,  },
+    { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isWeb: true, isResponsive: true },
+    { title: '엔뉴스', description: 'Vue.js 기반 애플리케이션', image: new URL('./assets/img/img-project04.png', import.meta.url).href, isMobile: true }
 ];
 
 
@@ -214,6 +215,73 @@ function showModal(skillName){
     isModalOpen.value = true;
 }
 
+
+onMounted(()=>{
+    function init(){
+        const elApp = document.querySelector('#app');
+        const elIntro = document.querySelector('#intro');
+        const elAbout = document.querySelector('#about');
+        const elSkill = document.querySelector('#skill');
+        const elContainer = document.querySelector('.about-container');
+        const elAboutItem = document.querySelectorAll('.about-item-inner');
+        const conHei = elApp.offsetHeight;
+        const sc = {y:0,dy:0,state:true,move:true};
+        let move;
+
+        document.body.style.height = conHei + 'px';
+        
+
+        window.addEventListener('scroll',(e)=>{
+            sc.y = window.scrollY;
+            sc.state = sc.y>sc.dy ? true : false;
+            sc.dy = sc.y;
+
+            //interview
+            // if(sc.move){           
+            //     console.log(sc.state)  
+            //     if(sc.state){                    
+            //         elAbout[1].style.width = `${elAbout[1].offsetWidth - 5}px`;
+            //     }else{
+            //         elAbout[1].style.width = `${elAbout[1].offsetWidth + 5}px`;
+            //     }
+            //     sc.move = elAbout[1].offsetWidth > 100 ? true : false;                
+                
+            // }
+            // const pos = elAbout.getBoundingClientRect()
+            
+            // if( pos.top <= 0){
+            //     elContainer.classList.add('active');
+            // }else{
+            //     elContainer.classList.remove('active'); 
+            // }
+            elApp.style=`top:-${sc.y}px`         
+            
+        });
+
+        const intersection = new IntersectionObserver((items) => {
+            if (items[0].isIntersecting) {
+                elContainer.classList.add('active');
+            } else {
+                elContainer.classList.remove('active');
+            }
+        }, { rootMargin: '0px 0px -100% 0px' });
+        intersection.observe(elAbout);
+
+
+        const intersection2 = new IntersectionObserver((items) => {
+            if (items[0].isIntersecting) {
+                elContainer.classList.remove('active');
+            } else {
+                // elContainer.classList.add('active');
+            }
+        }, { rootMargin: '0px 0px 0% 0px' });
+        intersection2.observe(elSkill);
+       
+    }
+    window.onload = init;
+    
+    
+})
 
 </script>
 

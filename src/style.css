@@ -1,0 +1,17 @@
+#app{
+    position: fixed;
+    width:100%;
+    min-height:100vh;
+    /* transition: all 0.7s ease-in-out; */
+    transition: all 600ms cubic-bezier(0.250, 0.100, 0.250, 1.000); /* ease (default) */
+}
+
+#about{
+    height:500vh;
+    border:1px solid white;
+}
+.about-container.active{
+    position:fixed;
+    left:calc((100% - 1200px) / 2);
+    top:180px;
+}
