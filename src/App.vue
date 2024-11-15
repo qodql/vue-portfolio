@@ -174,7 +174,6 @@
                 :projectData="selectedProjectData" 
                 @close="isProjectModalOpen = false" 
                 />
-                
             </div>
         </section>
     </main>
@@ -185,13 +184,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Scrollbar } from 'swiper';
 
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/mousewheel';
 import 'swiper/css/scrollbar';
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
@@ -206,10 +203,14 @@ const isProjectModalOpen = ref(false);
 const selectedProjectData = ref({ title: '', description: '', image: '' });
 
 const skillDetails = {
-    HTML: { title: 'HTML', description: 'HTML5 웹 표준 태그 숙지 및 SCSS 활용 가능, 반응형 웹 제작 가능' },
-    CSS: { title: 'CSS', description: 'CSS3 속성 및 Flexbox, Grid 레이아웃 이해' },
-    JavaScript: { title: 'JavaScript', description: 'Javascript로 동적인 웹 구현 가능 내장함수 이용 및 응용 이벤트 활용 가능' },
+  HTML: { title: 'HTML', description: 'HTML5 웹 표준 태그 숙지 및 SCSS 활용 가능, 반응형 웹 제작 가능' },
+  CSS: { title: 'CSS', description: 'CSS3 속성 및 Flexbox, Grid 레이아웃 이해' },
+  JavaScript: { title: 'JavaScript', description: 'Javascript로 동적인 웹 구현 가능 내장함수 이용 및 응용 이벤트 활용 가능' },
 };
+
+
+
+
 
 const projects = [
     { 
@@ -334,7 +335,7 @@ const projects = [
     }
 ];
 
-function showModal(skillName: string){
+function showModal(skillName: any){
     selectedSkillData.value = skillDetails[skillName];
     isModalOpen.value = true;
 }
@@ -345,29 +346,27 @@ function showProjectModal(project: any) {
 }
 
 
-
 onMounted(()=>{
 
-    
     function init(){
-        const elApp = document.querySelector('#app');
-        const elIntro = document.querySelector('#intro');
-        const elAbout = document.querySelector('#about');
-        const elSkill = document.querySelector('#skill');
-        const elContainer = document.querySelector('.about-container');
-        const elAboutItem = document.querySelectorAll('.about-item-inner');
+        const elApp = document.querySelector('#app') as HTMLElement;
+        //const elIntro = document.querySelector('#intro') as HTMLElement;
+        const elAbout = document.querySelector('#about') as HTMLElement;
+        //const elSkill = document.querySelector('#skill') as HTMLElement;
+        const elContainer = document.querySelector('.about-container') as HTMLElement;
+        //const elAboutItem = document.querySelectorAll('.about-item-inner') as HTMLElement;
         const conHei = elApp.offsetHeight;
         const sc = {y:0,dy:0,state:true,move:true};
-        let move;
+        //let move;
         
 
         document.body.style.height = conHei + 'px';
         
-        window.addEventListener('scroll',(e)=>{
+        window.addEventListener('scroll',()=>{
             sc.y = window.scrollY;
             sc.state = sc.y>sc.dy ? true : false;
             sc.dy = sc.y;
-            elApp.style=`top:-${sc.y}px`  
+            elApp.style.top = `-${sc.y}px`;
             aboutMove();
         });
 
@@ -388,7 +387,8 @@ onMounted(()=>{
                 elContainer.classList.remove('active');
             }
 
-            elContainer.style=`transform:translateX(calc(90vw - ${sc.y * 0.5}px))`;
+            elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
+
         }
 
       

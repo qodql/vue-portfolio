@@ -20,7 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* 추가된 부분 */
+    "baseUrl": "./src", // src 폴더를 기준으로 별칭을 설정
+    "paths": {
+      "@/*": ["src/*"] // @로 시작하는 경로는 src 폴더로 매핑
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

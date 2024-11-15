@@ -1,8 +1,8 @@
 <template>
     <div class="skill-modal">
         <div class="skill-modal-inner">
-            <h5>{{ skillData.title }}</h5>
-            <p>{{ skillData.description }}</p>
+            <h5>{{ props.skillData.title }}</h5>
+            <p>{{ props.skillData.description }}</p>
         </div>
     </div>
 </template>
