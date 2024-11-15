@@ -148,9 +148,7 @@
                         768: { slidesPerView: 2, spaceBetween: 30 },
                         1024: { slidesPerView: 3, spaceBetween: 40 },
                     }"
-                    pagination
-                    mousewheel
-                    :scrollbar="{ el: '.project-scrollbar', draggable: true }"
+                    scrollbar
                     class="project-list"
                 >
                     <swiper-slide v-for="(project, index) in projects" 
@@ -176,10 +174,7 @@
                 :projectData="selectedProjectData" 
                 @close="isProjectModalOpen = false" 
                 />
-                <div class="project-scrollbar">
-                    <span></span>
-                    <span></span>
-                </div>
+                
             </div>
         </section>
     </main>
@@ -190,7 +185,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Mousewheel, Scrollbar } from 'swiper';
+import { Scrollbar } from 'swiper';
+
+import 'swiper/swiper-bundle.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -349,18 +346,9 @@ function showProjectModal(project) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 onMounted(()=>{
+
+    
     function init(){
         const elApp = document.querySelector('#app');
         const elIntro = document.querySelector('#intro');
@@ -371,33 +359,39 @@ onMounted(()=>{
         const conHei = elApp.offsetHeight;
         const sc = {y:0,dy:0,state:true,move:true};
         let move;
+        
 
         document.body.style.height = conHei + 'px';
         
-
         window.addEventListener('scroll',(e)=>{
             sc.y = window.scrollY;
             sc.state = sc.y>sc.dy ? true : false;
             sc.dy = sc.y;
-
-            elApp.style=`top:-${sc.y}px`         
-            
+            elApp.style=`top:-${sc.y}px`  
+            aboutMove();
         });
 
         function aboutMove(){
-            
-            if (elAbout.offsetTop < sc.y  && elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y) {
-                elContainer.classList.add('active');
-                elAbout.style.paddingBottom = '3000px';
-                elAbout.style.paddingTop = '25vh';
+            if (elAbout.offsetTop < sc.y) {
+                if(elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y){
+                    elContainer.classList.add('active');
+                    elAbout.style.paddingBottom = '3000px';
+                    elAbout.style.paddingTop = '25vh';
+                }else{
+                    elAbout.style.paddingTop = '3000px';
+                    elAbout.style.paddingBottom = '25vh';
+                    setTimeout(()=>{
+                        elContainer.classList.remove('active');
+                    },100)
+                }
             } else {
                 elContainer.classList.remove('active');
-                elAbout.style.paddingTop = '3000px';
-                elAbout.style.paddingBottom = '25vh';
             }
+
+            elContainer.style=`transform:translateX(calc(90vw - ${sc.y * 0.5}px))`;
         }
 
-        setInterval(aboutMove,20);
+      
 
         // const intersection = new IntersectionObserver((items) => {
         //     if (items[0].isIntersecting) {

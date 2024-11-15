@@ -298,6 +298,7 @@
         .project-container {
             max-width: var(--pc);
             margin: 200px auto;
+            overflow: visible;
             h3 {
                 color: var(--color-white01);
                 font-size: 60px;
@@ -308,9 +309,11 @@
                 width: calc(100% + 600px);
                 display: flex;
                 gap: 40px;
+                overflow: hidden;
                 .project-item {
                     display: flex;
                     flex-direction: column;
+                    cursor: pointer;
                     figure {
                         padding-bottom: 24px;
                     }
@@ -350,35 +353,22 @@
                         }
                     }   
                 }
-                
             }
-            .project-scrollbar {
-                width: 100%;
+            .swiper-scrollbar {
+                width: 600px;
+                position: absolute;
+                bottom: -100px;
+                left: 0;
+                height: 3px;
                 background-color: var(--color-white01);
-                margin-top: 160px;
-                display: flex;
-                span {
-                    width: 50%;
-                    height: 3px;
-                    display: block;
-                    &:nth-child(2) {
-                        background-color: var(--color-background-black03);
-                    }
+                border-radius: 8px;
+                z-index: 99;
+                .swiper-scrollbar-drag {
+                    background-color: #007bff;
+                    border-radius: 8px;
+                    height: 100%;
                 }
             }
-            // .project-scrollbar {
-            //     position: absolute;
-            //     bottom: 10px;
-            //     left: 0;
-            //     right: 0;
-            //     height: 6px;
-            //     background-color: #e0e0e0;
-            //     border-radius: 3px;
-            //     .swiper-scrollbar-drag {
-            //         background-color: #007bff;
-            //         border-radius: 3px;
-            //     }
-            // }
         }
     }
 }
