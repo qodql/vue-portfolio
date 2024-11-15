@@ -334,12 +334,12 @@ const projects = [
     }
 ];
 
-function showModal(skillName){
+function showModal(skillName: string){
     selectedSkillData.value = skillDetails[skillName];
     isModalOpen.value = true;
 }
 
-function showProjectModal(project) {
+function showProjectModal(project: any) {
     selectedProjectData.value = project;
     isProjectModalOpen.value = true;
 }
