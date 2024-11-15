@@ -1,0 +1,107 @@
+.skill-modal {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    background-color: var(--color-background-white01);
+    z-index: 9;
+    .skill-modal-inner {
+        h5 {
+
+        }
+        p {
+            
+        }
+    }
+}
+
+.project-modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    .project-modal-inner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        padding: 32px;
+        transform: translate(-50%, -50%);
+        border-radius: 8px;
+        width: 600px;
+        height: 680px;
+        background-color: var(--color-background-white01);
+        color: var(--color-black01);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        figure {
+            width: 92px;
+            height: 36px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .project-modal-title {
+            p {
+                font-size: 22px;
+            }
+            span {
+                padding-top: 12px;
+                font-size: 18px;
+            }
+        }
+        .project-modal-top {
+            display: flex;
+            gap: 40px;
+            .project-modal-type {
+                display: flex;
+                flex-direction: column;
+            }
+            .project-modal-person {
+                display: flex;
+                flex-direction: column;
+            }
+            .project-modal-button {
+                display: flex;
+                gap: 28px;
+                button {
+                    border: none;
+                    background-color: transparent;
+                    background: url('@/assets/img/img-project-button.svg') no-repeat top;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    cursor: pointer;
+                    a {
+                        font-size: 18px;
+                        font-family: var(--font-primary);
+                        color: var(--color-black01);
+                        padding-top: 32px;
+                    }
+                }
+            }
+        }
+        .project-modal-contribute {
+            .project-modal-contribute-cont {
+                p {
+                    padding-top: 12px;
+                }
+            }
+        }
+        .project-modal-skill {
+            .project-modal-skill-img {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                padding-top: 12px;
+            }
+        }
+    }
+}

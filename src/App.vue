@@ -153,7 +153,11 @@
                     :scrollbar="{ el: '.project-scrollbar', draggable: true }"
                     class="project-list"
                 >
-                    <swiper-slide v-for="(project, index) in projects" :key="index" class="project-item">
+                    <swiper-slide v-for="(project, index) in projects" 
+                    :key="index" 
+                    class="project-item"
+                    @click="showProjectModal(project)"
+                    >
                         <figure>
                             <img :src="project.image" :alt="project.title">
                         </figure>
@@ -168,6 +172,10 @@
                         </div>
                     </swiper-slide>
                 </swiper>
+                <ProjectModalView v-if="isProjectModalOpen" 
+                :projectData="selectedProjectData" 
+                @close="isProjectModalOpen = false" 
+                />
                 <div class="project-scrollbar">
                     <span></span>
                     <span></span>
@@ -191,10 +199,14 @@ import 'swiper/css/scrollbar';
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
 import SkillModalView from '@/components/SkillModalView.vue';
+import ProjectModalView from '@/components/ProjectModalView.vue';
 
 
 const isModalOpen = ref(false);
 const selectedSkillData = ref({ title: '', description: '' });
+
+const isProjectModalOpen = ref(false);
+const selectedProjectData = ref({ title: '', description: '', image: '' });
 
 const skillDetails = {
     HTML: { title: 'HTML', description: 'HTML5 웹 표준 태그 숙지 및 SCSS 활용 가능, 반응형 웹 제작 가능' },
@@ -203,17 +215,149 @@ const skillDetails = {
 };
 
 const projects = [
-    { title: '다온', description: '웹 리뉴얼 프로젝트', image: new URL('./assets/img/img-project01.png', import.meta.url).href, isWeb: true, isResponsive: true },
-    { title: '책이음', description: 'Next.js PWA 개발 프로젝트', image: new URL('./assets/img/img-project02.png', import.meta.url).href, isMobile: true },
-    { title: '피커', description: 'React 기반 웹 애플리케이션', image: new URL('./assets/img/img-project03.png', import.meta.url).href, isWeb: true, isResponsive: true },
-    { title: '엔뉴스', description: 'Vue.js 기반 애플리케이션', image: new URL('./assets/img/img-project04.png', import.meta.url).href, isMobile: true }
+    { 
+        title: '다온', 
+        description: '웹 리뉴얼 프로젝트', 
+        image: new URL('./assets/img/img-project01.png', import.meta.url).href, 
+        isWeb: true, 
+        isResponsive: true,
+        logo: new URL('./assets/img/logo/daon.svg', import.meta.url).href, 
+        person: '5명',
+        site:'https://qodql.github.io/daon/index.html',
+        git:'https://github.com/qodql/daon',
+        contribute:[
+            '<p>공지사항에 게시판 기능을 추가하여 방문자가 공지사항을 편리하게 확인할 수 있도록 사용자 경험을 향상했습니다.</p>',
+            '<p>오시는길에는 숙소의 위치 안내 및 경로와 퀵메뉴에는 숙소 주변 날씨 정보를 실시간으로 확인할 수 있도록 api들을 연동하여 사용자에게 유용한 정보를 제공하였습니다.</p>',
+            '<p>사용자 정보와 예약 데이터를 불러와 한 페이지에서 통합 관리할 수 있도록 하였으며, 사용자 맞춤형 정보를 제공해 편리성을 높였습니다.</p>',
+            '<p>다양한 화면 크기에 최적화된 일관된 사용자 경험을 제공하였습니다.</p>'
+        ],
+        skills:[
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-sass.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-swiper.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-jquery.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-json.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-git.svg', import.meta.url).href,
+        ]            
+    },
+    { 
+        title: '책이음', 
+        description: 'Next.js PWA 개발 프로젝트', 
+        image: new URL('./assets/img/img-project02.png', import.meta.url).href, 
+        isMobile: true,
+        logo: new URL('./assets/img/logo/ieum.svg', import.meta.url).href, 
+        person: '3명',
+        site:'https://ieum-ykb.vercel.app',
+        git:'https://github.com/qodql/ieum-ykb',
+        contribute:[
+            '<p>Zustand를 이용하여 도서 API를 각 기능에 맞게 불러올 수 있도록 상태 관리 로직을 설계하여, 효율적인 데이터 로딩과 상황에 맞는 상태 처리가 가능하게 했습니다.</p>',
+            '<p>사용자가 원하는 책을 편리하게 찾을 수 있도록 도서 리스트 제공과 검색 기능 및 상세 정보 페이지를 구현했습니다.</p>',
+            '<p>사용자가 각 도서에 대한 평점을 남길 수 있도록 평점 기능을 추가하여, 도서에 대한 피드백을 기반으로 사용자 경험을 강화했습니다.</p>',
+            '<p>전반적인 디자인과 UI/UX를 담당하여 일관된 색상과 스타일을 제공하였습니다.</p>'
+        ],
+        skills:[
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-sass.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-swiper.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-npm.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-next.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-react.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-firebase.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-firestore.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-zustand.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-vercel.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-git.svg', import.meta.url).href,
+        ]  
+    },
+    {  
+        title: '피커', 
+        description: 'React 기반 웹 애플리케이션', 
+        image: new URL('./assets/img/img-project03.png', import.meta.url).href, 
+        isWeb: true, 
+        isResponsive: true,
+        logo: new URL('./assets/img/logo/picker.svg', import.meta.url).href, 
+        person: '1명',
+        site:'https://picker-ykb.vercel.app',
+        git:'https://github.com/qodql/picker',
+        contribute:[
+            '<p>영화 API 데이터의 상태 관리 시스템을 Redux를 사용하여 구현하였습니다. 이를 통해 상태를 효율적으로 관리하고, 컴포넌트 간 데이터 흐름을 일관되게 유지할 수 있도록 했습니다.</p>',
+            '<p>상세페이지에는 라우팅 처리를 통해 각 영화에 고유 URL을 부여하여 사용자가 특정 영화 정보를 쉽게 확인할 수 있도록 했습니다.</p>',
+            '<p>영화 이름으로 검색할 수 있는 기능을 구현하여 사용자가 원하는 영화를 빠르게 찾을 수 있도록 했습니다.</p>',
+            '<p>다양한 디바이스에 최적화된 반응형 디자인을 적용하였습니다.</p>'
+        ],
+        skills:[
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-sass.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-swiper.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-npm.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-react.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-redux.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-vercel.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-git.svg', import.meta.url).href,
+        ]  
+    },
+    { 
+        title: '엔뉴스', 
+        description: 'Vue.js 기반 애플리케이션', 
+        image: new URL('./assets/img/img-project04.png', import.meta.url).href, 
+        isMobile: true,
+        logo: new URL('./assets/img/logo/nnews.svg', import.meta.url).href, 
+        person: '1명',
+        site:'https://nnews-ykb.vercel.app',
+        git:'https://github.com/qodql/news',
+        contribute:[
+            '<p>검색어 입력 시 API 요청을 보내고, 결과를 렌더링하는 기능을 Vue.js와 Vuex를 활용하여 구현했습니다.</p>',
+            '<p>Vue 컴포넌트로 모달을 구현하고, 기사의 상세 정보를 API 호출로 가져와 표시하도록 했습니다.</p>',
+            '<p>Express를 사용해 백엔드 서버를 구축하고, 해당 서버를 Vercel에 배포하여 클라이언트와 서버 간 원활한 데이터 통신을 구현했습니다. 이를 통해 뉴스 API 호출을 처리할 수 있는 안정적인 환경을 제공했습니다.</p>',
+        ],
+        skills:[
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-sass.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-swiper.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-npm.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-vue.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-vuex.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-express.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-node.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-vercel.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-git.svg', import.meta.url).href
+        ]  
+    }
 ];
-
 
 function showModal(skillName){
     selectedSkillData.value = skillDetails[skillName];
     isModalOpen.value = true;
 }
+
+function showProjectModal(project) {
+    selectedProjectData.value = project;
+    isProjectModalOpen.value = true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 onMounted(()=>{
@@ -236,46 +380,47 @@ onMounted(()=>{
             sc.state = sc.y>sc.dy ? true : false;
             sc.dy = sc.y;
 
-            //interview
-            // if(sc.move){           
-            //     console.log(sc.state)  
-            //     if(sc.state){                    
-            //         elAbout[1].style.width = `${elAbout[1].offsetWidth - 5}px`;
-            //     }else{
-            //         elAbout[1].style.width = `${elAbout[1].offsetWidth + 5}px`;
-            //     }
-            //     sc.move = elAbout[1].offsetWidth > 100 ? true : false;                
-                
-            // }
-            // const pos = elAbout.getBoundingClientRect()
-            
-            // if( pos.top <= 0){
-            //     elContainer.classList.add('active');
-            // }else{
-            //     elContainer.classList.remove('active'); 
-            // }
             elApp.style=`top:-${sc.y}px`         
             
         });
 
-        const intersection = new IntersectionObserver((items) => {
-            if (items[0].isIntersecting) {
+        function aboutMove(){
+            
+            if (elAbout.offsetTop < sc.y  && elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y) {
                 elContainer.classList.add('active');
+                elAbout.style.paddingBottom = '3000px';
+                elAbout.style.paddingTop = '25vh';
             } else {
                 elContainer.classList.remove('active');
+                elAbout.style.paddingTop = '3000px';
+                elAbout.style.paddingBottom = '25vh';
             }
-        }, { rootMargin: '0px 0px -100% 0px' });
-        intersection.observe(elAbout);
+        }
+
+        setInterval(aboutMove,20);
+
+        // const intersection = new IntersectionObserver((items) => {
+        //     if (items[0].isIntersecting) {
+        //         elContainer.classList.add('active');
+        //         elAbout.style.paddingTop = 'calc(500vh)';
+        //         elAbout.style.paddingBottom = '180px';
+        //     } else {
+        //         elContainer.classList.remove('active');
+        //         elAbout.style.paddingBottom = '500vh';
+        //         elAbout.style.paddingTop = '180px';
+        //     }
+        // }, { rootMargin: '0px 0px -100% 0px',threshold:0 });
+        // intersection.observe(elIntro);
 
 
-        const intersection2 = new IntersectionObserver((items) => {
-            if (items[0].isIntersecting) {
-                elContainer.classList.remove('active');
-            } else {
-                // elContainer.classList.add('active');
-            }
-        }, { rootMargin: '0px 0px 0% 0px' });
-        intersection2.observe(elSkill);
+        // const intersection2 = new IntersectionObserver((items) => {
+        //     if (items[0].isIntersecting) {
+        //         elContainer.classList.remove('active');
+        //     } else {
+        //         // elContainer.classList.add('active');
+        //     }
+        // }, { rootMargin: '0px 0px 0% 0px' });
+        // intersection2.observe(elSkill);
        
     }
     window.onload = init;

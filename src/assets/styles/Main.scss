@@ -131,7 +131,7 @@
     }
     #about {
         width: 100%;
-        padding: 180px 0;
+        // padding: 180px 0;
         .about-container {
             width: 100%;
             max-width: var(--pc);
@@ -143,7 +143,7 @@
                     &.active {
                         .about-item-inner {
                             width: 100px;
-                            height: 493px;
+                            height: 50vh;
                             padding: 54px 35px;
                             background-color: var(--color-white01);
                             h5 {
@@ -161,7 +161,7 @@
                     }
                     .about-item-inner {
                         width: 866px;
-                        height: 493px;
+                        height: 50vh;
                         color: var(--color-white01);
                         background-color: rgba(#45474B, 0.35);
                         border-radius: 8px;

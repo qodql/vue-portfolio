@@ -14,7 +14,7 @@ export default defineConfig({
           @import "@/assets/styles/Header.scss";
           @import "@/assets/styles/Main.scss";
           @import "@/assets/styles/Footer.scss";
-          @import "@/assets/styles/SkillModal.scss";
+          @import "@/assets/styles/Modal.scss";
         `
       }
     }

@@ -7,11 +7,16 @@
 }
 
 #about{
-    height:500vh;
+    /* height:500vh; */
+    /* padding-top:180px !important; */
+    height:3704px;
+    padding-top:25vh ;
+    padding-bottom:3000px ;
     border:1px solid white;
+    left:0; top:0;
 }
 .about-container.active{
     position:fixed;
     left:calc((100% - 1200px) / 2);
-    top:180px;
+    top:24vh;
 }
