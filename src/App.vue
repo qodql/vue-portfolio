@@ -202,7 +202,7 @@ const selectedSkillData = ref({ title: '', description: '' });
 const isProjectModalOpen = ref(false);
 const selectedProjectData = ref({ title: '', description: '', image: '' });
 
-const skillDetails = {
+const skillDetails:any = {
   HTML: { title: 'HTML', description: 'HTML5 웹 표준 태그 숙지 및 SCSS 활용 가능, 반응형 웹 제작 가능' },
   CSS: { title: 'CSS', description: 'CSS3 속성 및 Flexbox, Grid 레이아웃 이해' },
   JavaScript: { title: 'JavaScript', description: 'Javascript로 동적인 웹 구현 가능 내장함수 이용 및 응용 이벤트 활용 가능' },
@@ -335,7 +335,7 @@ const projects = [
     }
 ];
 
-function showModal(skillName: any){
+function showModal(skillName: string){
     selectedSkillData.value = skillDetails[skillName];
     isModalOpen.value = true;
 }

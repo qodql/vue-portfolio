@@ -18,12 +18,12 @@
 <script lang="ts">
 // import styles from '@/assets/styles/Header.module.scss';
 
-// export default {
+export default {
 //   name: 'Header',
 //   computed: {
 //     $style: () => styles
 //   }
-// };
+};
 
 </script>
 
