@@ -2,7 +2,9 @@
     width: 100%;
     background-color: var(--color-background-black01);
     #intro {
-        background: url('@/assets/img/img-intro-bg.svg') no-repeat center 15%;
+        width: 100%;
+        background: url('@/assets/img/img-intro-bg.svg') no-repeat center 70%;
+        background-size: 150% auto;
         .particle {
             width: 100%;
             position: relative;
@@ -99,34 +101,34 @@
                     div {
                         display: flex;
                         align-items: flex-end;
-                        gap: 28px;
+                        gap: 24px;
                         h5 {
-                            //font-family: var(--font-primary);
+                            font-family: var(--font-primary);
                             font-size: 32px;
                             font-weight: 500;
                         }
                         p {
-                            //font-family: var(--font-primary);
                             font-size: 24px;
+                            font-weight: 100;
                         }
                     }
                     ul {
                         li {
                             font-size: 20px;
-                            margin: 20px 0;
-                            padding-left: 28px;
+                            margin: 24px 0;
+                            padding-left: 20px;
                             position: relative;
-                            &::after {
-                                content: '';
-                                position: absolute;
-                                top: 9px;
-                                left: 10px;
-                                display: block;
-                                width: 4px;
-                                height: 4px;
-                                background-color: var(--color-white01);
-                                border-radius: 50%;
-                            }
+                            // &::after {
+                            //     content: '';
+                            //     position: absolute;
+                            //     top: 9px;
+                            //     left: 10px;
+                            //     display: block;
+                            //     width: 4px;
+                            //     height: 4px;
+                            //     background-color: var(--color-white01);
+                            //     border-radius: 50%;
+                            // }
                         }
                     }
                 }
@@ -327,7 +329,7 @@
                     figure {
                         width: 580px;
                         height: 326px;
-                        margin-bottom: 24px;
+                        margin-bottom: 28px;
                         img {
                             width: 100%;
                             height: 100%;

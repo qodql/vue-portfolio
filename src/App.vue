@@ -209,8 +209,6 @@ const skillDetails:any = {
 };
 
 
-
-
 const projects = [
     { 
         title: '다온', 
@@ -347,6 +345,22 @@ function showProjectModal(project: any) {
 
 onMounted(()=>{
 
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+
+     navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetSection = document.getElementById(link.dataset.target);
+
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth',
+            })
+        });
+    });
+
+
     function init(){
         const elApp = document.querySelector('#app') as HTMLElement;
         //const elIntro = document.querySelector('#intro') as HTMLElement;
@@ -420,6 +434,7 @@ onMounted(()=>{
     
     
 })
+
 
 </script>
 

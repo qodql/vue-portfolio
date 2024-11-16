@@ -7,9 +7,9 @@
           </a>
         </div>
         <nav class="nav">
-          <a href="#intro">인터뷰</a>
-          <a href="#skill">기술</a>
-          <a href="#project">프로젝트</a>
+          <a href="#intro" data-target="intro">인터뷰</a>
+          <a href="#skill" data-target="skill">기술</a>
+          <a href="#project" data-target="project">프로젝트</a>
         </nav>
       </div>
     </header>
@@ -24,6 +24,9 @@ export default {
 //     $style: () => styles
 //   }
 };
+
+
+
 
 </script>
 
