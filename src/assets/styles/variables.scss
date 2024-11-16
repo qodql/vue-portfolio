@@ -11,6 +11,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  src: url('@/assets/fonts/SpoqaHanSansNeo-Medium.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
   
   html, body {
     max-width: 100vw;
@@ -33,7 +40,7 @@
   }
   
   body {
-    font-family: var(--font-primary);
+    font-family: var(--font-sans);
   }
   
   :root {
@@ -52,6 +59,7 @@
     --mobile: 480px;
     --font-primary: 'DungGeunMo', sans-serif;
     --font-title: 'PyeongChang Peace', sans-serif;
+    --font-sans: 'SpoqaHanSansNeo', sans-serif;
   }
   
   

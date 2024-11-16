@@ -211,7 +211,6 @@ const skillDetails:any = {
 
 
 
-
 const projects = [
     { 
         title: '다온', 
