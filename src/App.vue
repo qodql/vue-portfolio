@@ -346,17 +346,20 @@ function showProjectModal(project: any) {
 onMounted(()=>{
 
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
-    const sections = document.querySelectorAll('section') as NodeListOf<HTMLAnchorElement>;
 
      navLinks.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
-            const targetSection = document.getElementById(link.dataset.target);
+            const targetSection = document.getElementById(link.dataset.target as string);
 
-            window.scrollTo({
-                top: targetSection.offsetTop,
-                behavior: 'smooth',
-            })
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth',
+                });
+            } else {
+                console.error('타겟 확인 불가');
+            }
         });
     });
 
