@@ -215,7 +215,7 @@ const projects = [
     { 
         title: '다온', 
         description: '웹 리뉴얼 프로젝트', 
-        image: new URL('./assets/img/img-project01.png', import.meta.url).href, 
+        image: new URL('./assets/img/img-project01.jpg', import.meta.url).href, 
         isWeb: true, 
         isResponsive: true,
         logo: new URL('./assets/img/logo/daon.svg', import.meta.url).href, 
@@ -226,7 +226,7 @@ const projects = [
             '<p>공지사항에 게시판 기능을 추가하여 방문자가 공지사항을 편리하게 확인할 수 있도록 사용자 경험을 향상했습니다.</p>',
             '<p>오시는길에는 숙소의 위치 안내 및 경로와 퀵메뉴에는 숙소 주변 날씨 정보를 실시간으로 확인할 수 있도록 api들을 연동하여 사용자에게 유용한 정보를 제공하였습니다.</p>',
             '<p>사용자 정보와 예약 데이터를 불러와 한 페이지에서 통합 관리할 수 있도록 하였으며, 사용자 맞춤형 정보를 제공해 편리성을 높였습니다.</p>',
-            '<p>다양한 화면 크기에 최적화된 일관된 사용자 경험을 제공하였습니다.</p>'
+            '<p>다양한 화면 크기에 최적화된 화면으로 일관된 사용자 경험을 제공하였습니다.</p>'
         ],
         skills:[
             new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
@@ -243,7 +243,7 @@ const projects = [
     { 
         title: '책이음', 
         description: 'Next.js PWA 개발 프로젝트', 
-        image: new URL('./assets/img/img-project02.png', import.meta.url).href, 
+        image: new URL('./assets/img/img-project02.jpg', import.meta.url).href, 
         isMobile: true,
         logo: new URL('./assets/img/logo/ieum.svg', import.meta.url).href, 
         person: '3명',
@@ -275,7 +275,7 @@ const projects = [
     {  
         title: '피커', 
         description: 'React 기반 웹 애플리케이션', 
-        image: new URL('./assets/img/img-project03.png', import.meta.url).href, 
+        image: new URL('./assets/img/img-project03.jpg', import.meta.url).href, 
         isWeb: true, 
         isResponsive: true,
         logo: new URL('./assets/img/logo/picker.svg', import.meta.url).href, 
@@ -305,7 +305,7 @@ const projects = [
     { 
         title: '엔뉴스', 
         description: 'Vue.js 기반 애플리케이션', 
-        image: new URL('./assets/img/img-project04.png', import.meta.url).href, 
+        image: new URL('./assets/img/img-project04.jpg', import.meta.url).href, 
         isMobile: true,
         logo: new URL('./assets/img/logo/nnews.svg', import.meta.url).href, 
         person: '1명',
