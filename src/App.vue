@@ -345,8 +345,8 @@ function showProjectModal(project: any) {
 
 onMounted(()=>{
 
-    const navLinks = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
+    const sections = document.querySelectorAll('section') as NodeListOf<HTMLAnchorElement>;
 
      navLinks.forEach(link => {
         link.addEventListener('click', e => {
