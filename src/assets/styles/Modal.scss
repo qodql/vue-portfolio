@@ -30,16 +30,16 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        padding: 32px;
+        padding: 36px;
         transform: translate(-50%, -50%);
         border-radius: 8px;
-        width: 600px;
-        height: 680px;
+        width: 680px;
+        height: 760px;
         background-color: var(--color-background-white01);
         color: var(--color-black01);
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: 40px;
         figure {
             width: 92px;
             height: 36px;
@@ -50,11 +50,13 @@
         }
         .project-modal-title {
             p {
-                font-size: 22px;
+                font-size: 24px;
+                font-weight: 500;
             }
             span {
-                padding-top: 12px;
-                font-size: 18px;
+                color: var(--color-black02);
+                font-size: 20px;
+                padding-top: 16px;
             }
         }
         .project-modal-top {
@@ -73,17 +75,22 @@
                 gap: 28px;
                 button {
                     border: none;
-                    background-color: transparent;
                     background: url('@/assets/img/img-project-button.svg') no-repeat top;
+                    background-size: 36px;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
                     cursor: pointer;
+                    &:hover {
+                        background: url('@/assets/img/img-project-button-hover.svg') no-repeat top;
+                        background-size: 40px;
+                        transition: 0.3s;
+                    }
                     a {
-                        font-size: 18px;
+                        font-size: 24px;
                         font-family: var(--font-primary);
-                        color: var(--color-black01);
-                        padding-top: 32px;
+                        color: var(--color-black02);
+                        padding-top: 45px;
                     }
                 }
             }
@@ -91,6 +98,8 @@
         .project-modal-contribute {
             .project-modal-contribute-cont {
                 p {
+                    font-size: 20px;
+                    color: var(--color-black02);
                     padding-top: 12px;
                 }
             }
