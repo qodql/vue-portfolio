@@ -140,7 +140,9 @@
         <section id="project">
             <div class="project-container">
                 <h3>프로젝트</h3>
-                <swiper 
+                <swiper
+                    :modules="[Scrollbar]"
+                    :scrollbar="{draggable: true}"
                     :slides-per-view="1"
                     :space-between="10"
                     :breakpoints="{
@@ -148,7 +150,6 @@
                         768: { slidesPerView: 2, spaceBetween: 30 },
                         1024: { slidesPerView: 3, spaceBetween: 40 },
                     }"
-                    scrollbar
                     class="project-list"
                 >
                     <swiper-slide v-for="(project, index) in projects" 
@@ -184,11 +185,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
+import { Scrollbar } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
@@ -345,6 +344,7 @@ function showProjectModal(project: any) {
 
 onMounted(()=>{
 
+    //nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
 
      navLinks.forEach(link => {
@@ -364,6 +364,7 @@ onMounted(()=>{
     });
 
 
+    //scroll
     function init(){
         const elApp = document.querySelector('#app') as HTMLElement;
         //const elIntro = document.querySelector('#intro') as HTMLElement;

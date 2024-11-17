@@ -19,6 +19,9 @@ export default defineConfig({
       }
     }
   },
+  optimizeDeps: {
+    include: ['swiper'],
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'), 
