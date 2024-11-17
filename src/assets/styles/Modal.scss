@@ -61,7 +61,7 @@
         }
         .project-modal-top {
             display: flex;
-            gap: 40px;
+            justify-content: space-between;
             .project-modal-type {
                 display: flex;
                 flex-direction: column;
