@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header :class="['header', { active: isScrolled }]">
       <div class="header-inner">
         <div class="logo-container">
           <a href="/">
@@ -16,14 +16,28 @@
   </template>
   
 <script lang="ts">
-// import styles from '@/assets/styles/Header.module.scss';
+import { ref, onMounted, onUnmounted } from "vue";
 
 export default {
-//   name: 'Header',
-//   computed: {
-//     $style: () => styles
-//   }
+  setup() {
+    const isScrolled = ref(false);
+
+    const handleScroll = () => {
+      isScrolled.value = window.scrollY > 0;
+    };
+
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("scroll", handleScroll);
+    });
+
+    return { isScrolled };
+  },
 };
+
 
 
 

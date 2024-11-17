@@ -11,25 +11,31 @@
             img {
                 position: absolute;
                 left: 50%;
+                animation: float 6s infinite ease-in-out;
                 &:nth-child(1) {
                     left: calc(50% - 40vw);
                     bottom: calc(50% - 30vh);
+                    animation-delay: 0s;
                 }
                 &:nth-child(2) {
                     left: calc(50% + 25vw);
                     bottom: calc(50% - 20vh);
+                    animation-delay: 2s;
                 }
                 &:nth-child(3) {
                     left: calc(50% - 45vw);
                     bottom: calc(50% - 100vh);
+                    animation-delay: 4s;
                 }
                 &:nth-child(4) {
                     left: calc(50% + 40vw);
                     bottom: calc(50% - 50vh);
+                    animation-delay: 6s;
                 }
                 &:nth-child(5) {
                     left: calc(50% + 35vw);
                     bottom: calc(50% - 100vh);
+                    animation-delay: 8s;
                 }
             }
         }
@@ -379,7 +385,7 @@
                 }
             }
             .swiper-scrollbar {
-                width: 1200px;
+                width: var(--pc);
                 height: 3px;
                 position: absolute;
                 left: 0;
@@ -392,5 +398,17 @@
                 }
             }
         }
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }
