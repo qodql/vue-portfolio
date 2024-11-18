@@ -156,8 +156,11 @@
                         .about-item-inner {
                             width: 100px;
                             height: 50vh;
-                            padding: 54px 35px;
+                            padding: calc(100% - 64px);
                             background-color: var(--color-white01);
+                            span, p {
+                                display: none;
+                            }
                             h5 {
                                 font-size: 32px;
                                 font-weight: 500;
@@ -203,7 +206,7 @@
                             }
                         }
                         p {
-                            font-size: 28px;
+                            font-size: 24px;
                             padding-top: 30px;
                         }
                     }

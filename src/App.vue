@@ -54,9 +54,20 @@
         <section id="about">
             <div class="about-container">
                 <div class="about-list">
-                    <div class="about-item active">
+                    <div class="about-item">
                         <div class="about-item-inner">
+                            <span>01</span>
                             <h5>프론트엔드를 선택한 이유</h5>
+                            <p>
+                                “프론트엔드를 선택한 이유는 디자인을 
+                                헤보면서, 좋은 사용자 경험을 만들어내는 
+                                데 더 깊이 기여하고 싶다는 욕심이 
+                                생겼습니다. 프론트엔드 개발은 사용자가 
+                                직접 경험하는 부분이기 때문에, 화면 
+                                설계부터 개발까지 사용자 경험을 
+                                전반적으로 책임질 수 있는 부분이 
+                                매력적으로 다가왔습니다.”
+                            </p>
                         </div>
                     </div>
                     <div class="about-item">
@@ -180,7 +191,6 @@
     </main>
     <FooterView />
 </template>
-
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
@@ -367,16 +377,13 @@ onMounted(()=>{
     //scroll
     function init(){
         const elApp = document.querySelector('#app') as HTMLElement;
-        //const elIntro = document.querySelector('#intro') as HTMLElement;
         const elAbout = document.querySelector('#about') as HTMLElement;
-        //const elSkill = document.querySelector('#skill') as HTMLElement;
         const elContainer = document.querySelector('.about-container') as HTMLElement;
-        //const elAboutItem = document.querySelectorAll('.about-item-inner') as HTMLElement;
+        const elItem = document.querySelector('.about-item');
         const conHei = elApp.offsetHeight;
         const sc = {y:0,dy:0,state:true,move:true};
         //let move;
         
-
         document.body.style.height = conHei + 'px';
         
         window.addEventListener('scroll',()=>{
@@ -387,7 +394,9 @@ onMounted(()=>{
             aboutMove();
         });
 
-        function aboutMove(){
+        function aboutMove() {
+            console.log(sc.y);
+            
             if (elAbout.offsetTop < sc.y) {
                 if(elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y){
                     elContainer.classList.add('active');
@@ -404,8 +413,12 @@ onMounted(()=>{
                 elContainer.classList.remove('active');
             }
 
-            elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
-
+            if(sc.y < 3485) {
+                elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
+                elItem.classList.remove('active');
+            }else{
+                elItem.classList.add('active');
+            }
         }
 
       
