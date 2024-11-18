@@ -12,7 +12,7 @@
     height:3704px;
     padding-top:25vh ;
     padding-bottom:3000px ;
-    border:1px solid white;
+    /* border:1px solid white; */
     left:0; top:0;
 }
 .about-container.active{
