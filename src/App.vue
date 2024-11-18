@@ -379,7 +379,8 @@ onMounted(()=>{
         const elApp = document.querySelector('#app') as HTMLElement;
         const elAbout = document.querySelector('#about') as HTMLElement;
         const elContainer = document.querySelector('.about-container') as HTMLElement;
-        const elItem = document.querySelector('.about-item');
+        const elItem = document.querySelector('.about-item') as HTMLElement;
+        //const elItems = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
         const conHei = elApp.offsetHeight;
         const sc = {y:0,dy:0,state:true,move:true};
         //let move;
@@ -413,7 +414,7 @@ onMounted(()=>{
                 elContainer.classList.remove('active');
             }
 
-            if(sc.y < 3485) {
+            if(sc.y < 3500) {
                 elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
                 elItem.classList.remove('active');
             }else{

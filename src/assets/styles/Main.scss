@@ -154,9 +154,11 @@
                 .about-item {
                     &.active {
                         .about-item-inner {
+                            transition: all 0.3s;
                             width: 100px;
                             height: 50vh;
-                            padding: calc(100% - 64px);
+                            justify-content: center;
+                            align-items: center;
                             background-color: var(--color-white01);
                             span, p {
                                 display: none;
