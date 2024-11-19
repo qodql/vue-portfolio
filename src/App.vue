@@ -112,19 +112,20 @@
                         </div>
                         <div class="skill-item-contents">
                             <ul>
-                                <li @click="showModal('HTML')"><p>HTML</p></li>
-                                <li @click="showModal('CSS')"><p>CSS</p></li>
-                                <li @click="showModal('SCSS')"><p>SCSS</p></li>
-                                <li @click="showModal('Jquery')"><p>Jquery</p></li>
-                                <li @click="showModal('JavaScript')"><p>JavaScript</p></li>
-                                <li @click="showModal('React')"><p>React</p></li>
-                                <li @click="showModal('Next.js')"><p>Next.js</p></li>
-                                <li @click="showModal('Vue.js')"><p>Vue.js</p></li>
-                                <li @click="showModal('Vite')"><p>Vite</p></li>
-                                <li @click="showModal('TypeScript')"><p>TypeScript</p></li>
-                                <li @click="showModal('Ajax')"><p>Ajax</p></li>
-                                <li @click="showModal('Zustand')"><p>Zustand</p></li>
-                                <li @click="showModal('React-Redux')"><p>React-Redux</p></li>
+                                <!-- <li @click="showModal('HTML')"><p>HTML</p></li> -->
+                                <li><p>HTML</p></li>
+                                <li><p>SCSS</p></li>
+                                <li><p>CSS</p></li>
+                                <li><p>Jquery</p></li>
+                                <li><p>JavaScript</p></li>
+                                <li><p>React</p></li>
+                                <li><p>Next.js</p></li>
+                                <li><p>Vue.js</p></li>
+                                <li><p>Vite</p></li>
+                                <li><p>TypeScript</p></li>
+                                <li><p>Ajax</p></li>
+                                <li><p>Zustand</p></li>
+                                <li><p>React-Redux</p></li>
                             </ul>
                         </div>
                     </div>
@@ -145,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <SkillModalView v-if="isModalOpen" :skillData="selectedSkillData"/>
+                <!-- <SkillModalView v-if="isModalOpen" :skillData="selectedSkillData"/> -->
             </div>
         </section>
         <section id="project">
@@ -201,12 +202,11 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
-import SkillModalView from '@/components/SkillModalView.vue';
 import ProjectModalView from '@/components/ProjectModalView.vue';
 
 
-const isModalOpen = ref(false);
-const selectedSkillData = ref({ title: '', description: '' });
+// const isModalOpen = ref(false);
+// const selectedSkillData = ref({ title: '', description: '' });
 
 const isProjectModalOpen = ref(false);
 const selectedProjectData = ref({ title: '', description: '', image: '' });
@@ -341,10 +341,10 @@ const projects = [
     }
 ];
 
-function showModal(skillName: string){
-    selectedSkillData.value = skillDetails[skillName];
-    isModalOpen.value = true;
-}
+// function showModal(skillName: string){
+//     selectedSkillData.value = skillDetails[skillName];
+//     isModalOpen.value = true;
+// }
 
 function showProjectModal(project: any) {
     selectedProjectData.value = project;
@@ -353,7 +353,6 @@ function showProjectModal(project: any) {
 
 
 onMounted(()=>{
-
     //nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
 
@@ -379,10 +378,11 @@ onMounted(()=>{
         const elApp = document.querySelector('#app') as HTMLElement;
         const elAbout = document.querySelector('#about') as HTMLElement;
         const elContainer = document.querySelector('.about-container') as HTMLElement;
-        const elItem = document.querySelector('.about-item') as HTMLElement;
-        //const elItems = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
+        // const elItem = document.querySelector('.about-item') as HTMLElement;
+        const elItems = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
         const conHei = elApp.offsetHeight;
-        const sc = {y:0,dy:0,state:true,move:true};
+        const sc = {y:0, dy:0, state:true, move:true};
+        let isTriggered = false;
         //let move;
         
         document.body.style.height = conHei + 'px';
@@ -390,13 +390,12 @@ onMounted(()=>{
         window.addEventListener('scroll',()=>{
             sc.y = window.scrollY;
             sc.state = sc.y>sc.dy ? true : false;
-            sc.dy = sc.y;
             elApp.style.top = `-${sc.y}px`;
             aboutMove();
+            sc.dy = sc.y;
         });
 
         function aboutMove() {
-            console.log(sc.y);
             
             if (elAbout.offsetTop < sc.y) {
                 if(elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y){
@@ -414,11 +413,27 @@ onMounted(()=>{
                 elContainer.classList.remove('active');
             }
 
-            if(sc.y < 3500) {
-                elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
-                elItem.classList.remove('active');
+            let targetX = 90 * window.innerWidth / 100 - sc.y * 0.5;
+
+            console.log(sc.dy);
+            console.log(sc.y);
+
+            if(targetX <= 0) {
+                targetX = 0;
+                elContainer.style.transform = `translateX(${targetX}px)`;
+                //elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
+                elItems[0].classList.add('active');
+               
+                if (!isTriggered) { 
+                    elItems[1].classList.add('active');
+                    isTriggered = true;
+                }else{
+
+                }
             }else{
-                elItem.classList.add('active');
+                elContainer.style.transform = `translateX(${targetX}px)`;
+                elItems[0].classList.remove('active');
+                isTriggered = false;
             }
         }
 
