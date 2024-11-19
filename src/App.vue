@@ -155,12 +155,12 @@
                 <swiper
                     :modules="[Scrollbar]"
                     :scrollbar="{draggable: true}"
-                    :slides-per-view="1"
-                    :space-between="10"
+                    :slides-per-view="2"
+                    :space-between="16"
                     :breakpoints="{
-                        640: { slidesPerView: 1, spaceBetween: 20 },
-                        768: { slidesPerView: 2, spaceBetween: 30 },
-                        1024: { slidesPerView: 3, spaceBetween: 40 },
+                        761: { slidesPerView: 2, spaceBetween: 28 },
+                        1200: { slidesPerView: 2, spaceBetween: 36 },
+                        1201: { slidesPerView: 3, spaceBetween: 40 },
                     }"
                     class="project-list"
                 >
@@ -372,7 +372,6 @@ onMounted(()=>{
         });
     });
 
-
     //scroll
     function init(){
         const elApp = document.querySelector('#app') as HTMLElement;
@@ -415,8 +414,8 @@ onMounted(()=>{
 
             let targetX = 90 * window.innerWidth / 100 - sc.y * 0.5;
 
-            console.log(sc.dy);
-            console.log(sc.y);
+            // console.log(sc.dy);
+            // console.log(sc.y);
 
             if(targetX <= 0) {
                 targetX = 0;
@@ -427,8 +426,6 @@ onMounted(()=>{
                 if (!isTriggered) { 
                     elItems[1].classList.add('active');
                     isTriggered = true;
-                }else{
-
                 }
             }else{
                 elContainer.style.transform = `translateX(${targetX}px)`;
