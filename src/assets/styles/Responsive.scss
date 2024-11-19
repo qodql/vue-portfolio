@@ -446,45 +446,21 @@
             }
         }
         #skill {
-            height: 100%;
-            padding: 160px 16px;
             .skill-container {
                 h3 {
-                    font-size: 36px;
-                    padding-bottom: 28px;
+                    font-size: 32px;
+                    padding-bottom: 16px;
                 }
                 .skill-inner {
-                    flex-direction: column;
-                    gap: 16px;
                     .skill-item {
-                        width: 100%;
-                        gap: 0;
-                        &:nth-child(2) {
-                            width: 100%;
-                        }
                         .skill-item-title {
-                            border-radius: 8px 8px 0 0;
                             p {
-                                font-size: 22px;
+                                font-size: 20px;
                             }
                         }
                         .skill-item-contents {
-                            min-height: 200px;
-                            padding: 16px;
-                            border-radius: 0 0 8px 8px;
                             ul {
-                                li {
-                                    font-size: 20px;
-                                    p {
-                                        width: 100%;
-                                        &:hover {
-                                            pointer-events: none;
-                                            &::before {
-                                                display: none;
-                                            }
-                                        }
-                                    }
-                                }
+                                gap: 8px 0;
                             }
                         }
                     }   
@@ -492,18 +468,18 @@
             }
         }
         #project {
-            padding: 160px 16px;
             .project-container {
                 h3 {
-                    font-size: 36px;
-                    padding-bottom: 28px;
+                    font-size: 32px;
+                    padding-bottom: 16px;
                 }
                 .project-list {
-                    width: calc(100% + 320px);
+                    width: calc(100% + 280px);
                     .project-item {
                         figure {
-                            height: 280px;
-                            margin-bottom: 24px;
+                            height: 240px;
+                            margin-bottom: 16px;
+                            
                         }
                         .project-item-contents {
                             .project-item-title {
