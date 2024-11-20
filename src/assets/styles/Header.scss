@@ -10,8 +10,15 @@
     align-items: center;
     transition: 0.5s;
     &.active {
-        //background-color: rgba($color: #1B1D22, $alpha: 0.8);
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .hamburger{
+        width: 28px;
+        height: 20px;
+        border: none;
+        background: url('../img/icon/icon-header-burger.svg') no-repeat;
+        display: none;
+        cursor: pointer;
     }
     .header-inner {
         width: var(--pc);
@@ -53,10 +60,15 @@
 @media (max-width: 760px) {
     .header {
         .header-inner {
+            width: 100%;
             padding: 0 16px;
+            .hamburger{
+                display: flex;
+            }
             .nav {
-                a {
-                    display: none;
+                display: none;
+                &.open {
+                    display: flex;
                 }
             }
         }
