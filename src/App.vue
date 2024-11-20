@@ -156,9 +156,10 @@
                     :modules="[Scrollbar]"
                     :scrollbar="{draggable: true}"
                     :slides-per-view="2"
-                    :space-between="16"
+                    :space-between="8"
                     :breakpoints="{
-                        761: { slidesPerView: 2, spaceBetween: 28 },
+                        480: { slidesPerView: 2, spaceBetween: 16 },
+                        760: { slidesPerView: 2, spaceBetween: 28 },
                         1200: { slidesPerView: 2, spaceBetween: 36 },
                         1201: { slidesPerView: 3, spaceBetween: 40 },
                     }"

@@ -479,14 +479,15 @@
                         figure {
                             height: 240px;
                             margin-bottom: 16px;
-                            
                         }
                         .project-item-contents {
                             .project-item-title {
-                                font-size: 24px;
+                                font-size: 20px;
+                                padding-bottom: 12px;
                             }
                             p {
-                                font-size: 20px;
+                                font-size: 18px;
+                                padding-bottom: 8px;
                             }
                             .kind {
                                 margin-bottom: 80px;
@@ -501,7 +502,7 @@
                     }
                 }
                 .swiper-scrollbar {
-                    width: calc(100% - 320px);
+                    width: calc(100% - 280px);
                 }
             }
         }

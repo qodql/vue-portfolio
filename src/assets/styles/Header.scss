@@ -41,3 +41,24 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    .header {
+        .header-inner {
+            padding: 0 60px;
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    .header {
+        .header-inner {
+            padding: 0 16px;
+            .nav {
+                a {
+                    display: none;
+                }
+            }
+        }
+    }
+}
