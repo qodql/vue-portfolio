@@ -353,9 +353,13 @@ function showProjectModal(project: any) {
     isProjectModalOpen.value = true;
 }
 
+onMounted(() => {
+    // refresh
+    window.addEventListener('beforeunload', () => {
+        window.scrollTo(0, 0);
+    });
 
-onMounted(()=>{
-    //nav
+    // nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
 
     navLinks.forEach(link => {
@@ -374,78 +378,101 @@ onMounted(()=>{
         });
     });
 
-
-    //scroll
+    // scroll
     function init() {
-       const section2 = document.querySelector('#about') as HTMLElement;
-       const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
-       const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
-       const elAboutItemInner = document.querySelectorAll('.about-item-inner') as NodeListOf<HTMLElement>;
-       const section2Top = section2.offsetTop; // 2번째 섹션의 시작 위치
-       const windowWidth = window.innerWidth;
-       const horizontalScrollWidth = windowWidth * 2;
-       const scrollDistance = elAboutItem[0].offsetWidth * 3; // 가로 스크롤 진행 거리
-       let itemWid = [
-           elAboutItemInner[0].offsetWidth,
-           elAboutItemInner[1].offsetWidth
-       ];
-       let itemCount:number = 0; //itemTimeout;
-       let itemNum: number = 0;
+        const section2 = document.querySelector('#about') as HTMLElement;
+        const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
+        const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
+        const elAboutItemInner = document.querySelectorAll('.about-item-inner') as NodeListOf<HTMLElement>;
+        const section2Top = section2.offsetTop; // 2번째 섹션의 시작 위치
+        const windowWidth = window.innerWidth;
+        const horizontalScrollWidth = windowWidth * 2;
+        const scrollDistance = elAboutItem[0].offsetWidth * 3; // 가로 스크롤 진행 거리
 
-       section2.style.height = scrollDistance*1.45 +'px';
+        let itemWid = [
+            elAboutItemInner[0].offsetWidth,
+            elAboutItemInner[1].offsetWidth
+        ];
+        let itemCount: number = 0;
+        let itemNum: number = 0;
 
-       window.addEventListener('scroll', () => {
-       const scrollY = window.scrollY;
+        section2.style.height = scrollDistance * 1.45 + 'px';
 
-       // 2번째 섹션의 자식 요소가 화면 상단에 도달했을 때 fixed 처리
-       if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
-           horizontalScroll.style.position = 'fixed';
-           horizontalScroll.style.top = '25vh';
+        // scroll controll
+        const onScroll = () => {
+            const scrollY = window.scrollY;
 
-           const progress = (scrollY - section2Top) / scrollDistance;
-           const translateX = -progress * (horizontalScrollWidth - windowWidth);
+            if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
+                horizontalScroll.style.position = 'fixed';
+                horizontalScroll.style.top = '25vh';
 
-           if(translateX > 0){
-               horizontalScroll.style.transform = `translateX(${translateX}px)`;
-           }else{
+                const progress = (scrollY - section2Top) / scrollDistance;
+                const translateX = -progress * (horizontalScrollWidth - windowWidth);
 
-               itemNum = (itemWid[itemCount] * (itemCount+1)) - (scrollY - section2Top);
-               if(itemNum > 100){
-                   elAboutItemInner[itemCount].style.width = itemNum+'px';
-                   elAboutItem[itemCount].classList.remove('active');
-               }else{
-                   elAboutItemInner[itemCount].style.width = 120+'px';
-                   elAboutItem[itemCount].classList.add('active');
-               }
+                if (translateX > 0) {
+                    horizontalScroll.style.transform = `translateX(${translateX}px)`;
+                } else {
+                    itemNum = (itemWid[itemCount] * (itemCount + 1)) - (scrollY - section2Top);
+                    if (itemNum > 100) {
+                        elAboutItemInner[itemCount].style.width = itemNum + 'px';
+                        elAboutItem[itemCount].classList.remove('active');
+                    } else {
+                        elAboutItemInner[itemCount].style.width = '120px';
+                        elAboutItem[itemCount].classList.add('active');
+                    }
+                    if (elAboutItem[itemCount].classList.contains('active')) {
+                        itemCount = 1;
+                    } else {
+                        itemCount = 0;
+                    }
+                }
+            } else if (scrollY > section2Top + scrollDistance) {
+                horizontalScroll.style.position = 'absolute';
+                horizontalScroll.style.top = `calc(25vh + ${scrollDistance}px)`;
+            } else {
+                horizontalScroll.style.position = 'absolute';
+                horizontalScroll.style.top = '25vh';
 
-               if(elAboutItem[itemCount].classList.contains('active')){
-                   itemCount = 1;
-               }else{
-                   itemCount = 0;
-               }
-           }
+                const progress = (scrollY - section2Top) / scrollDistance;
+                const translateX = -progress * (horizontalScrollWidth - windowWidth);
+                horizontalScroll.style.transform = `translateX(${translateX}px)`;
+            }
+        };
 
-       } else if (scrollY > section2Top + scrollDistance) {
-           // 가로 스크롤이 끝난 후 세로 스크롤 전환
-           horizontalScroll.style.position = 'absolute';
-           horizontalScroll.style.top = `calc(25vh + ${scrollDistance}px)`;
-       } else {
-           // 초기 상태로 복귀
-           horizontalScroll.style.position = 'absolute';
-           horizontalScroll.style.top = '25vh';
-          
-           const progress = (scrollY - section2Top) / scrollDistance;
-           const translateX = -progress * (horizontalScrollWidth - windowWidth);
-           horizontalScroll.style.transform = `translateX(${translateX}px)`;
-          
-       }
-       });
-      
-   }
-   window.onload = init;
-    
-    
-})
+        // scroll event
+        const manageScrollEvent = () => {
+            const currentWidth = window.innerWidth;
+
+            if (currentWidth > 1200) {
+                window.addEventListener('scroll', onScroll);
+            } else {
+                window.removeEventListener('scroll', onScroll);
+            }
+        };
+
+        manageScrollEvent();
+
+        window.addEventListener('resize', manageScrollEvent);
+    }
+
+    let previousWidth = window.innerWidth;
+
+    // refresh top
+    window.addEventListener('resize', () => {
+        const currentWidth = window.innerWidth;
+
+        if ((previousWidth <= 1200 && currentWidth > 1200) || (previousWidth > 1200 && currentWidth <= 1200)) {
+            window.scrollTo(0, 0);
+            window.location.reload();
+        }
+
+        previousWidth = currentWidth;
+    });
+
+    window.onload = init;
+});
+
+
 
 
 </script>
