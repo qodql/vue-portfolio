@@ -25,8 +25,8 @@
 <script lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 
-import closeIcon from "@/assets/img/icon/icon-header-close.svg";
-import burgerIcon from "@/assets/img/icon/icon-header-burger.svg";
+import closeIcon from "../assets/img/icon/icon-header-close.svg";
+import burgerIcon from "../assets/img/icon/icon-header-burger.svg";
 
 
 export default {
