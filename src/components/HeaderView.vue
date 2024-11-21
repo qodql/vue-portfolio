@@ -6,7 +6,13 @@
             <h1></h1>
           </a>
         </div>
-        <button class="hamburger" @click="toggleMenu"></button>
+        <button
+          class="hamburger"
+          :style="{
+            backgroundImage: isMenuOpen ? `url(${closeIcon})` : `url(${burgerIcon})`
+          }"
+          @click="toggleMenu"
+        ></button>
         <nav class="nav" :class="{ open: isMenuOpen }">
           <a href="#intro" data-target="intro">인터뷰</a>
           <a href="#skill" data-target="skill">기술</a>
@@ -19,6 +25,8 @@
 <script lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 
+import closeIcon from "@/assets/img/icon/icon-header-close.svg";
+import burgerIcon from "@/assets/img/icon/icon-header-burger.svg";
 
 
 export default {
@@ -42,7 +50,7 @@ export default {
       window.removeEventListener("scroll", handleScroll);
     });
 
-    return { isScrolled, isMenuOpen, toggleMenu };
+    return { isScrolled, isMenuOpen, toggleMenu, closeIcon, burgerIcon};
   },
 };
 

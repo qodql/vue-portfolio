@@ -16,8 +16,10 @@
         width: 28px;
         height: 20px;
         border: none;
-        background: url('../img/icon/icon-header-burger.svg') no-repeat;
         display: none;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        transition: all 0.2s;
         cursor: pointer;
     }
     .header-inner {
@@ -68,7 +70,17 @@
             .nav {
                 display: none;
                 &.open {
+                    width: 100%;
                     display: flex;
+                    flex-direction: column;
+                    background-color: var(--color-background-black02);
+                    position: absolute;
+                    top: 80px;
+                    left: 0;
+                    a {
+                        padding: 28px 0;
+                        text-align: center;
+                    }
                 }
             }
         }

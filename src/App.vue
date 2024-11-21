@@ -358,7 +358,7 @@ onMounted(()=>{
     //nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
 
-     navLinks.forEach(link => {
+    navLinks.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
             const targetSection = document.getElementById(link.dataset.target as string);
@@ -374,93 +374,77 @@ onMounted(()=>{
         });
     });
 
+
     //scroll
-    function init(){
-        const elApp = document.querySelector('#app') as HTMLElement;
-        const elAbout = document.querySelector('#about') as HTMLElement;
-        const elContainer = document.querySelector('.about-container') as HTMLElement;
-        // const elItem = document.querySelector('.about-item') as HTMLElement;
-        const elItems = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
-        const conHei = elApp.offsetHeight;
-        const sc = {y:0, dy:0, state:true, move:true};
-        let isTriggered = false;
-        //let move;
-        
-        document.body.style.height = conHei + 'px';
-        
-        window.addEventListener('scroll',()=>{
-            sc.y = window.scrollY;
-            sc.state = sc.y>sc.dy ? true : false;
-            elApp.style.top = `-${sc.y}px`;
-            aboutMove();
-            sc.dy = sc.y;
-        });
+    function init() {
 
-        function aboutMove() {
-            
-            if (elAbout.offsetTop < sc.y) {
-                if(elAbout.offsetTop + elAbout.offsetHeight - window.innerHeight > sc.y){
-                    elContainer.classList.add('active');
-                    elAbout.style.paddingBottom = '3000px';
-                    elAbout.style.paddingTop = '25vh';
-                }else{
-                    elAbout.style.paddingTop = '3000px';
-                    elAbout.style.paddingBottom = '25vh';
-                    setTimeout(()=>{
-                        elContainer.classList.remove('active');
-                    },100)
-                }
-            } else {
-                elContainer.classList.remove('active');
-            }
 
-            let targetX = 90 * window.innerWidth / 100 - sc.y * 0.5;
+       const section2 = document.querySelector('#about') as HTMLElement;
+       const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
+       const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
+       const elAboutItemInner = document.querySelectorAll('.about-item-inner') as NodeListOf<HTMLElement>;
+       const section2Top = section2.offsetTop; // 2번째 섹션의 시작 위치
+       const windowWidth = window.innerWidth;
+       const horizontalScrollWidth = windowWidth * 2;
+       const scrollDistance = elAboutItem[0].offsetWidth * 3; // 가로 스크롤 진행 거리
+       let itemWid = [
+           elAboutItemInner[0].offsetWidth,
+           elAboutItemInner[1].offsetWidth
+       ];
+       let itemCount = 0, itemTimeout;
+       let itemNum = 0;
 
-    
-            if(targetX <= 0) {
-                targetX = 0;
-                elContainer.style.transform = `translateX(${targetX}px)`;
-                //elContainer.style.transform = `translateX(calc(90vw - ${sc.y * 0.5}px))`;
-                elItems[0].classList.add('active');
-               
-                if (!isTriggered) { 
-                    elItems[1].classList.add('active');
-                    isTriggered = true;
-                }
-            }else{
-                elContainer.style.transform = `translateX(${targetX}px)`;
-                elItems[0].classList.remove('active');
-                isTriggered = false;
-            }
-        }
+       section2.style.height = scrollDistance*1.45 +'px';
 
+       window.addEventListener('scroll', () => {
+       const scrollY = window.scrollY;
+
+       // 2번째 섹션의 자식 요소가 화면 상단에 도달했을 때 fixed 처리
+       if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
+           horizontalScroll.style.position = 'fixed';
+           horizontalScroll.style.top = '25vh';
+
+           const progress = (scrollY - section2Top) / scrollDistance;
+           const translateX = -progress * (horizontalScrollWidth - windowWidth);
+
+           if(translateX > 0){
+               horizontalScroll.style.transform = `translateX(${translateX}px)`;
+           }else{
+
+               itemNum = (itemWid[itemCount] * (itemCount+1)) - (scrollY - section2Top);
+               if(itemNum > 100){
+                   elAboutItemInner[itemCount].style.width = itemNum+'px';
+                   elAboutItem[itemCount].classList.remove('active');
+               }else{
+                   elAboutItemInner[itemCount].style.width = 120+'px';
+                   elAboutItem[itemCount].classList.add('active');
+               }
+
+               if(elAboutItem[itemCount].classList.contains('active')){
+                   itemCount = 1;
+               }else{
+                   itemCount = 0;
+               }
+           }
+
+       } else if (scrollY > section2Top + scrollDistance) {
+           // 가로 스크롤이 끝난 후 세로 스크롤 전환
+           horizontalScroll.style.position = 'absolute';
+           horizontalScroll.style.top = `calc(25vh + ${scrollDistance}px)`;
+       } else {
+           // 초기 상태로 복귀
+           horizontalScroll.style.position = 'absolute';
+           horizontalScroll.style.top = '25vh';
+          
+           const progress = (scrollY - section2Top) / scrollDistance;
+           const translateX = -progress * (horizontalScrollWidth - windowWidth);
+           horizontalScroll.style.transform = `translateX(${translateX}px)`;
+          
+       }
+       });
       
-
-        // const intersection = new IntersectionObserver((items) => {
-        //     if (items[0].isIntersecting) {
-        //         elContainer.classList.add('active');
-        //         elAbout.style.paddingTop = 'calc(500vh)';
-        //         elAbout.style.paddingBottom = '180px';
-        //     } else {
-        //         elContainer.classList.remove('active');
-        //         elAbout.style.paddingBottom = '500vh';
-        //         elAbout.style.paddingTop = '180px';
-        //     }
-        // }, { rootMargin: '0px 0px -100% 0px',threshold:0 });
-        // intersection.observe(elIntro);
-
-
-        // const intersection2 = new IntersectionObserver((items) => {
-        //     if (items[0].isIntersecting) {
-        //         elContainer.classList.remove('active');
-        //     } else {
-        //         // elContainer.classList.add('active');
-        //     }
-        // }, { rootMargin: '0px 0px 0% 0px' });
-        // intersection2.observe(elSkill);
-       
-    }
-    window.onload = init;
+   }
+   window.onload = init;
     
     
 })
