@@ -94,3 +94,161 @@
         }
     }
 }
+
+@media (max-width: 760px) {
+    .project-modal {
+        .project-modal-inner {
+            width: 560px;
+            height: 680px;
+            padding: 28px;
+            gap: 28px;
+            figure {
+                width: 80px;
+                height: 32px;
+            }
+            .project-modal-title {
+                p {
+                    font-size: 20px;
+                }
+                span {
+                    font-size: 18px;
+                    padding-top: 12px;
+                }
+            }
+            .project-modal-top {
+                .project-modal-button {
+                    gap: 20px;
+                    button {
+                        background-size: 32px;
+                        &:hover {
+                            background-size: 34px;
+                        }
+                        a {
+                            font-size: 20px;
+                            padding-top: 36px;
+                        }
+                    }
+                }
+            }
+            .project-modal-contribute {
+                .project-modal-contribute-cont {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+            .project-modal-skill {
+                .project-modal-skill-img {
+                    img {
+                        width: 68px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 620px) {
+    .project-modal {
+        .project-modal-inner {
+            width: 460px;
+            height: 560px;
+            padding: 40px 24px;
+            gap: 16px;
+            figure {
+                width: 60px;
+                height: 24px;
+            }
+            .project-modal-title {
+                p {
+                    font-size: 18px;
+                }
+                span {
+                    font-size: 16px;
+                    padding-top: 8px;
+                }
+            }
+            .project-modal-top {
+                .project-modal-button {
+                    gap: 16px;
+                    button {
+                        background-size: 28px;
+                        &:hover {
+                            background-size: 30px;
+                        }
+                        a {
+                            font-size: 18px;
+                            padding-top: 30px;
+                        }
+                    }
+                }
+            }
+            .project-modal-contribute {
+                .project-modal-contribute-cont {
+                    p {
+                        font-size: 16px;
+                        padding-top: 8px;
+                    }
+                }
+            }
+            .project-modal-skill {
+                .project-modal-skill-img {
+                    gap: 8px 2px;
+                    img {
+                        width: 56px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal {
+        .project-modal-inner {
+            width: 360px;
+            height: 480px;
+            padding: 28px 16px;
+            gap: 12px;
+            .project-modal-title {
+                p {
+                    font-size: 16px;
+                }
+                span {
+                    font-size: 14px;
+                }
+            }
+            .project-modal-top {
+                .project-modal-button {
+                    gap: 12px;
+                    button {
+                        background-size: 24px;
+                        &:hover {
+                            background-size: 26px;
+                        }
+                        a {
+                            font-size: 16px;
+                            padding-top: 24px;
+                        }
+                    }
+                }
+            }
+            .project-modal-contribute {
+                .project-modal-contribute-cont {
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+            .project-modal-skill {
+                .project-modal-skill-img {
+                    gap: 4px;
+                    img {
+                        width: 48px;
+                    }
+                }
+            }
+        }
+    }
+}
