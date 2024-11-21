@@ -60,7 +60,7 @@
                             <h5>프론트엔드를 선택한 이유</h5>
                             <p>
                                 “프론트엔드를 선택한 이유는 디자인을 
-                                헤보면서, 좋은 사용자 경험을 만들어내는 
+                                해보면서, 좋은 사용자 경험을 만들어내는 
                                 데 더 깊이 기여하고 싶다는 욕심이 
                                 생겼습니다. 프론트엔드 개발은 사용자가 
                                 직접 경험하는 부분이기 때문에, 화면 
@@ -377,8 +377,6 @@ onMounted(()=>{
 
     //scroll
     function init() {
-
-
        const section2 = document.querySelector('#about') as HTMLElement;
        const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
        const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
@@ -391,8 +389,8 @@ onMounted(()=>{
            elAboutItemInner[0].offsetWidth,
            elAboutItemInner[1].offsetWidth
        ];
-       let itemCount = 0, itemTimeout;
-       let itemNum = 0;
+       let itemCount:number = 0; //itemTimeout;
+       let itemNum: number = 0;
 
        section2.style.height = scrollDistance*1.45 +'px';
 
