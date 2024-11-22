@@ -4,13 +4,17 @@
             <div class="footer-inner">
                 <h3>감사합니다</h3>
                 <p>
-                    트렌드를 반영하기 위해 항상 기술을 익히고<br> 
+                    트렌드를 반영하기 위해 항상 기술을 익히고<br>
                     성장하는 프론트엔드 개발자가 되겠습니다.
                 </p>
                 <div>
-                    <button><a href="https://github.com/qodql" target="_blank">github</a></button>
-                    <button><a href="https://qodql.github.io/daon/index.html" target="_blank">site</a></button>
-                    <button><a href="mailto:bengby@naver.com">contact</a></button>
+                    <button>
+                        <a href="https://github.com/qodql" target="_blank">github</a>
+                    </button>
+                    <button>
+                        <a href="https://qodql.github.io/daon/index.html" target="_blank">site</a>
+                    </button>
+                    <button @click="copyMail"><a>contact</a></button>
                 </div>
             </div>
             <div class="copy">
@@ -23,9 +27,19 @@
     </footer>
 </template>
 
-  
 <script lang="ts">
 
+export default {
+    setup() {
+        const copyMail = () => {
+            const email = 'bengby@naver.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('이메일 주소가 복사되었습니다!');
+            })
+        };
+        return {copyMail}
+    },
+}
 
 </script>
 
