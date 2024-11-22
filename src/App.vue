@@ -335,6 +335,7 @@ const projects = [
 function showProjectModal(project: any) {
     selectedProjectData.value = project;
     isProjectModalOpen.value = true;
+    document.body.classList.add('modal-open');
 }
 
 onMounted(() => {

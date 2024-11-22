@@ -26,6 +26,12 @@ html, body {
   scrollbar-color: #888 #45474B;
 }
 
+body {
+  &.modal-open {
+    overflow-y: hidden;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

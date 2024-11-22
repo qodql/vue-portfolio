@@ -13,7 +13,7 @@
           <img :src="isMenuOpen ? closeIcon : burgerIcon" alt="hamburger icon" />
         </button>
         <nav class="nav" :class="{ open: isMenuOpen }">
-          <a href="#intro" data-target="intro">인터뷰</a>
+          <a href="#about" data-target="about">인터뷰</a>
           <a href="#skill" data-target="skill">기술</a>
           <a href="#project" data-target="project">프로젝트</a>
         </nav>
