@@ -155,13 +155,13 @@
                 <swiper
                     :modules="[Scrollbar]"
                     :scrollbar="{draggable: true}"
-                    :slides-per-view="2"
+                    :slides-per-view="1"
                     :space-between="8"
                     :breakpoints="{
                         480: { slidesPerView: 2, spaceBetween: 16 },
-                        760: { slidesPerView: 2, spaceBetween: 28 },
-                        1200: { slidesPerView: 2, spaceBetween: 36 },
-                        1201: { slidesPerView: 3, spaceBetween: 40 },
+                        760: { slidesPerView: 2, spaceBetween: 16 },
+                        1024: { slidesPerView: 3, spaceBetween: 20 },
+                        1200: { slidesPerView: 3, spaceBetween: 28 },
                     }"
                     class="project-list"
                 >
@@ -380,7 +380,7 @@ onMounted(() => {
         let itemCount: number = 0;
         let itemNum: number = 0;
 
-        section2.style.height = scrollDistance * 1.45 + 'px';
+        section2.style.height = scrollDistance * 1.35 + 'px';
 
         // scroll controll
         const onScroll = () => {
@@ -388,7 +388,7 @@ onMounted(() => {
 
             if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'fixed';
-                horizontalScroll.style.top = '25vh';
+                horizontalScroll.style.top = '28vh';
 
                 const progress = (scrollY - section2Top) / scrollDistance;
                 const translateX = -progress * (horizontalScrollWidth - windowWidth);
