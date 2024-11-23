@@ -114,8 +114,9 @@
                             <ul>
                                 <!-- <li @click="showModal('HTML')"><p>HTML</p></li> -->
                                 <li><p>HTML</p></li>
-                                <li><p>SCSS</p></li>
                                 <li><p>CSS</p></li>
+                                <li><p>SCSS</p></li>
+                                <li><p>Tailwind CSS</p></li>
                                 <li><p>Jquery</p></li>
                                 <li><p>JavaScript</p></li>
                                 <li><p>React</p></li>
@@ -131,17 +132,18 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-item-title">
-                            <p>백엔드/디자인</p>
+                            <p>백엔드</p>
                         </div>
                         <div class="skill-item-contents">
                             <ul>
                                 <li><p>Firebase</p></li>
                                 <li><p>MongoDB</p></li>
                                 <li><p>express</p></li>
-                                <li><p>Adobe Photoshop</p></li>
+                                <li><p>NextAuth.js</p></li>
+                                <!-- <li><p>Adobe Photoshop</p></li>
                                 <li><p>Adobe Illustrator</p></li>
                                 <li><p>Adobe XD</p></li>
-                                <li><p>Figma</p></li>
+                                <li><p>Figma</p></li> -->
                             </ul>
                         </div>
                     </div>
@@ -378,10 +380,10 @@ onMounted(() => {
             elAboutItemInner[0].offsetWidth,
             elAboutItemInner[1].offsetWidth
         ];
-        let itemCount: number = 0;
+        let itemCount: number = 0; 
         let itemNum: number = 0;
 
-        section2.style.height = scrollDistance * 1.35 + 'px';
+        section2.style.height = scrollDistance * 1.4 + 'px';
 
         // scroll controll
         const onScroll = () => {
@@ -389,7 +391,7 @@ onMounted(() => {
 
             if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'fixed';
-                horizontalScroll.style.top = '28vh';
+                horizontalScroll.style.top = '25vh';
 
                 const progress = (scrollY - section2Top) / scrollDistance;
                 const translateX = -progress * (horizontalScrollWidth - windowWidth);

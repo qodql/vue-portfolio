@@ -169,7 +169,7 @@
                             ul {
                                 li {
                                     p {
-                                        width: 60%;
+                                        width: 80%;
                                     }
                                 }
                             }
@@ -296,7 +296,7 @@
                                 li {
                                     font-size: 22px;
                                     p {
-                                        width: 80%;
+                                        width: 90%;
                                         &:hover {
                                             &::before {
                                                 top: 6px;
@@ -354,6 +354,48 @@
         }
     }
 }
+
+@media (max-width: 880px) {
+    .main {
+        #skill {
+            .skill-container {
+              
+                .skill-inner {
+                    gap: 12px;
+                    .skill-item {
+                        width: 672px;
+                        .skill-item-title {
+                            height: 60px;
+                            line-height: 62px;
+                            p {
+                                font-size: 24px;
+                            }
+                        }
+                        .skill-item-contents {
+                            min-height: 327px;
+                            padding: 20px;
+                            ul {
+                                li {
+                                    font-size: 22px;
+                                    p {
+                                        width: 90%;
+                                        &:hover {
+                                            pointer-events: none;
+                                            &::before {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }   
+                }
+            }
+        }
+    }
+}
+
 
 @media (max-width: 760px) {
     .main {
@@ -444,12 +486,6 @@
                                     font-size: 20px;
                                     p {
                                         width: 100%;
-                                        &:hover {
-                                            pointer-events: none;
-                                            &::before {
-                                                display: none;
-                                            }
-                                        }
                                     }
                                 }
                             }
