@@ -21,15 +21,8 @@ font-style: normal;
 
 html, body {
   max-width: 100vw;
-  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #888 #45474B;
-}
-
-body {
-  &.modal-open {
-    overflow-y: hidden;
-  }
 }
 
 * {
@@ -49,6 +42,10 @@ ul,li,ol{
 
 body {
   font-family: var(--font-sans);
+  overflow-x: hidden;
+  &.modal-open {
+    overflow-y: hidden;
+  }
 }
 
 :root {

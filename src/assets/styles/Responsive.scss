@@ -11,7 +11,7 @@
                         bottom: calc(50% - 134vh);
                     }
                     &:nth-child(4) {
-                        bottom: calc(50% - 55vh);
+                       //bottom: calc(50% - 55vh);
                     }
                     &:nth-child(5) {
                         bottom: calc(50% - 115vh);
@@ -400,6 +400,8 @@
 @media (max-width: 760px) {
     .main {
         #intro {
+            padding: 40px 0;
+            background-size: 250% auto;
             .particle {
                 display: none;
             }

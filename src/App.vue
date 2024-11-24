@@ -400,11 +400,11 @@ onMounted(() => {
                     horizontalScroll.style.transform = `translateX(${translateX}px)`;
                 } else {
                     itemNum = (itemWid[itemCount] * (itemCount + 1)) - (scrollY - section2Top);
-                    if (itemNum > 100) {
+                    if (itemNum > 0) { //450px 이상일때 active 발동
                         elAboutItemInner[itemCount].style.width = itemNum + 'px';
                         elAboutItem[itemCount].classList.remove('active');
                     } else {
-                        elAboutItemInner[itemCount].style.width = '120px';
+                        elAboutItemInner[itemCount].style.width = '120px'; //active width
                         elAboutItem[itemCount].classList.add('active');
                     }
                     if (elAboutItem[itemCount].classList.contains('active')) {

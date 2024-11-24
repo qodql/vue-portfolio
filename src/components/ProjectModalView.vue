@@ -46,6 +46,7 @@ const emits = defineEmits(['close']);
 
 function closeProjectModal() {
     emits('close');
+    document.body.classList.remove('modal-open');
 }
 
 </script>
