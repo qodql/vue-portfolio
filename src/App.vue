@@ -16,7 +16,7 @@
             <div class="intro-container">
                 <article class="intro-profile">
                     <div class="intro-profile-box">
-                        <img></img>
+                        <img src="./assets/img/img-intro-profile.jpg"></img>
                         <span>?</span>
                     </div>
                     <p>윤경빈</p>
@@ -345,6 +345,23 @@ onMounted(() => {
     window.addEventListener('beforeunload', () => {
         window.scrollTo(0, 0);
     });
+
+     const introProfileBox = document.querySelector('.intro-profile-box') as HTMLElement;
+     
+    //observer
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    introProfileBox.classList.add('visible');
+                }
+            });
+        },
+        { threshold: 1 } 
+    );
+
+    observer.observe(introProfileBox);
+
 
     // nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;

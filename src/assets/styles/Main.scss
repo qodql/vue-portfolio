@@ -44,9 +44,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 160px 0;
+            padding: 200px 0;
             h2 {
-                font-size: 112px;
+                font-size: 118px;
                 font-family: var(--font-title);
                 color: var(--color-white01);
                 line-height: 128px;
@@ -72,8 +72,30 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    img {}
+                    position: relative;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 8px;
+                        opacity: 0;
+                        transform: translateY(30px);
+                        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                    }
+                    &.visible {
+                        img {
+                            display: none;
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                        span {
+                            display: none;
+                        }
+                    }
                     span {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
                         font-size: 200px;
                         color: var(--color-white01);
                     }
@@ -133,7 +155,7 @@
     }
     #about {
         width: 100%;
-        background-color: #171717;
+        background-color: var(--color-background-black01);
         .about-container {
             width: 100%;
             max-width: var(--pc);
@@ -168,7 +190,7 @@
                     }
                     .about-item-inner {
                         width: 866px;
-                        height: 45vh;
+                        height: 50vh;
                         color: var(--color-white01);
                         background-color: rgba(#45474B, 0.35);
                         border-radius: 8px;
