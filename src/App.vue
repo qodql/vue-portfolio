@@ -140,10 +140,6 @@
                                 <li><p>MongoDB</p></li>
                                 <li><p>express</p></li>
                                 <li><p>NextAuth.js</p></li>
-                                <!-- <li><p>Adobe Photoshop</p></li>
-                                <li><p>Adobe Illustrator</p></li>
-                                <li><p>Adobe XD</p></li>
-                                <li><p>Figma</p></li> -->
                             </ul>
                         </div>
                     </div>
@@ -348,7 +344,7 @@ onMounted(() => {
 
      const introProfileBox = document.querySelector('.intro-profile-box') as HTMLElement;
      
-    //observer
+    // observer
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
