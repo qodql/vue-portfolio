@@ -396,7 +396,7 @@ onMounted(() => {
         let itemCount: number = 0; 
         let itemNum: number = 0;
 
-        section2.style.height = scrollDistance * 1.4 + 'px';
+        section2.style.height = scrollDistance * 1.38 + 'px';
 
         // scroll controll
         const onScroll = () => {
