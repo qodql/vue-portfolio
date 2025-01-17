@@ -19,7 +19,7 @@
             </div>
             <div class="copy">
                 <p>
-                    Copyright 2024. Yoonkyeongbin all rights reserved.<br>
+                    Copyright 2025. Yoonkyeongbin all rights reserved.<br>
                     Vue.js, TypeScript, SCSS 기반으로 제작된 사이트입니다.
                 </p>
             </div>
