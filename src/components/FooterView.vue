@@ -19,7 +19,7 @@
             </div>
             <div class="copy">
                 <p>
-                    Copyright 2025. Yoonkyeongbin all rights reserved.<br>
+                    Copyright {{ currentYear }}. Yoonkyeongbin all rights reserved.<br>
                     Vue.js, TypeScript, SCSS 기반으로 제작된 사이트입니다.
                 </p>
             </div>
@@ -28,19 +28,20 @@
 </template>
 
 <script lang="ts">
-
 export default {
     setup() {
         const copyMail = () => {
             const email = 'bengby@naver.com';
             navigator.clipboard.writeText(email).then(() => {
                 alert('이메일 주소가 복사되었습니다!');
-            })
+            });
         };
-        return {copyMail}
-    },
-}
 
+        const currentYear = new Date().getFullYear();
+
+        return { copyMail, currentYear };
+    },
+};
 </script>
 
 <style lang="scss">
