@@ -358,7 +358,6 @@ onMounted(() => {
 
     observer.observe(introProfileBox);
 
-
     // nav
     const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>;
 

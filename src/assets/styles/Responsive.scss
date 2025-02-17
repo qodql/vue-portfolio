@@ -19,6 +19,21 @@
                 }
             } 
         }
+        #about {
+            .about-container {
+                .about-list {
+                    .about-item {
+                        .about-item-inner {
+                            p {
+                                height: 236px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         #project {
             .project-container {
                 .project-list {
