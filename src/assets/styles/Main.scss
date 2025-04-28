@@ -363,16 +363,8 @@
                     &:hover {
                         figure {
                             position: relative;
-                            &::after {
-                                width: 100%;
-                                height: 100%;
-                                display: block;
-                                content: '';
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                background-color: rgba($color: #000000, $alpha: 0.25);
-                                border-radius: 8px;
+                            img {
+                                transform: scale(1.03);
                             }
                         }
                     }
@@ -380,11 +372,16 @@
                         width: 100%;
                         height: 308px;
                         margin-bottom: 28px;
+                        overflow: hidden;
+                        transition: all 0.4s ease;
+                        border-radius: 8px;
                         img {
                             width: 100%;
                             height: 100%;
                             border-radius: 8px;
                             object-fit: cover;
+                            transition: all 0.4s ease;
+                            will-change: transform;
                         }
                     }
                     .project-item-contents {

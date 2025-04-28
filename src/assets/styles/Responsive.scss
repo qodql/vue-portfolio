@@ -139,13 +139,14 @@
                     flex-direction: column;
                     gap: 36px;
                     .about-item {
+                        height: 320px;
                         &.active {
                             display: none;
                         }
                         .about-item-inner {
                             width: 100%;
                             height: 100%;
-                            padding: 36px;
+                            padding: 32px;
                             span {
                                 font-size: 36px;
                                 padding-bottom: 16px;
@@ -270,10 +271,12 @@
                 .about-list {
                     gap: 32px;
                     .about-item {
+                        height: 300px;
                         .about-item-inner {
                             padding: 28px;
                             span {
                                 font-size: 32px;
+                                padding-bottom: 20px;
                             }
                             h5 {
                                 font-size: 30px;
@@ -411,7 +414,6 @@
     }
 }
 
-
 @media (max-width: 760px) {
     .main {
         #intro {
@@ -453,14 +455,15 @@
                 .about-list {
                     gap: 28px;
                     .about-item {
+                        height: 280px;
                         .about-item-inner {
                             span {
                                 font-size: 28px;
-                                padding-bottom: 12px;
+                                padding-bottom: 16px;
                             }
                             h5 {
                                 font-size: 24px;
-                                padding-bottom: 16px;
+                                padding-bottom: 28px;
                             }
                             p {
                                 font-size: 18px;
@@ -487,6 +490,7 @@
                         gap: 0;
                         &:nth-child(2) {
                             width: 100%;
+                            height: 100%;
                         }
                         .skill-item-title {
                             border-radius: 8px 8px 0 0;
@@ -568,6 +572,15 @@
 
 @media (max-width: 600px) {
     .main {
+        #about {
+            .about-container {
+                .about-list {
+                    .about-item {
+                        height: 312px;
+                    }
+                }
+            }
+        }
         #project {
             .project-container {
                 .project-list {
@@ -619,15 +632,15 @@
                 .about-list {
                     gap: 16px;
                     .about-item {
+                        height: 288px;
                         .about-item-inner {
-                            padding: 24px;
+                            padding: 20px;
                             span {
                                 font-size: 22px;
-                                padding-bottom: 8px;
                             }
                             h5 {
                                 font-size: 20px;
-                                padding-bottom: 12px;
+                                padding-bottom: 20px;
                             }
                             p {
                                 font-size: 16px;
@@ -697,6 +710,21 @@
         }
     }
 }
+
+@media (max-width: 380px) {
+    .main {
+        #about {
+            .about-container {
+                .about-list {
+                    .about-item {
+                        height: 312px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @media (max-width: 336px) {
     .main {
