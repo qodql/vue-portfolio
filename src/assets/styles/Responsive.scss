@@ -97,32 +97,20 @@
                 }
                 .intro-contents {
                     margin-left: 40px;
-                    .intro-content {
-                        &:nth-child(2){
-                            margin-top: 36px;
-                        }
-                        span {
-                            width: 100px;
-                            height: 36px;
-                            line-height: 36px;
-                            font-size: 22px;
-                            margin-bottom: 20px;
-                        }
-                        div {
-                            h5 {
-                                font-size: 28px;
-                            }
-                            p {
-                                display: none;
-                            }
-                        }
-                        ul {
-                            li {
-                                font-size: 18px;
-                                margin: 20px 0;
-                                padding-left: 16px;
-                            }
-                        }
+                    .history-tab {
+                        width: 100px;
+                        height: 36px;
+                        font-size: 22px;
+                    }
+                    .history-head {
+                        gap: 16px;
+                        padding: 20px 4px;
+                        .history-title { font-size: 26px; }
+                        .history-period { font-size: 18px; }
+                    }
+                    .history-body ul li {
+                        font-size: 18px;
+                        padding-left: 16px;
                     }
                 }
             }
@@ -238,29 +226,16 @@
                 }
                 .intro-contents {
                     margin-left: 28px;
-                    .intro-content {
-                        &:nth-child(2){
-                            margin-top: 32px;
-                        }
-                        span {
-                            width: 80px;
-                            height: 32px;
-                            line-height: 32px;
-                            font-size: 18px;
-                            margin-bottom: 16px;
-                        }
-                        div {
-                            h5 {
-                                font-size: 28px;
-                                font-weight: 500;
-                            }
-                        }
-                        ul {
-                            li {
-                                margin: 16px 0;
-                                padding-left: 12px;
-                            }
-                        }
+                    .history-tab {
+                        width: 80px;
+                        height: 32px;
+                        font-size: 18px;
+                    }
+                    .history-tabs {
+                        margin-bottom: 20px;
+                    }
+                    .history-head {
+                        .history-title { font-size: 24px; }
                     }
                 }
             }
@@ -436,15 +411,8 @@
                 }
                 .intro-contents {
                     margin-left: 0px;
-                    .intro-content {
-                        &:nth-child(2){
-                            margin-top: 28px;
-                        }
-                        ul {
-                            li {
-                                padding-left: 8px;
-                            }
-                        }
+                    .history-body ul li {
+                        padding-left: 14px;
                     }
                 }
             }
@@ -608,21 +576,15 @@
             } 
             .intro-container {
                 .intro-contents {
-                    .intro-content {
-                        div {
-                            h5 {
-                                font-size: 24px;
-                            }
-                        }
-                        &:nth-child(2){
-                            margin-top: 24px;
-                        }
-                        ul {
-                            li {
-                                font-size: 16px;
-                                padding-left: 4px;
-                            }
-                        }
+                    .history-head {
+                        gap: 12px;
+                        padding: 16px 0;
+                        .history-title { font-size: 20px; }
+                        .history-period { font-size: 14px; }
+                    }
+                    .history-body ul {
+                        padding: 0 0 16px;
+                        li { font-size: 16px; }
                     }
                 }
             }
@@ -738,15 +700,8 @@
             } 
             .intro-container {
                 .intro-contents {
-                    .intro-content {
-                        div {
-                            h5 {
-                                font-size: 22px;
-                            }
-                        }
-                        &:nth-child(2){
-                            margin-top: 20px;
-                        }
+                    .history-head {
+                        .history-title { font-size: 18px; }
                     }
                 }
             }
@@ -789,9 +744,3 @@
         }
     }
 }
-
-
-
-
-
-

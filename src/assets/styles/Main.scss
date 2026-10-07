@@ -1,6 +1,9 @@
 .main {
     width: 100%;
     background-color: var(--color-background-black01);
+    // 화면 밖에 대기 중인 인터뷰 컨테이너 때문에 생기는 가로 넘침을 잘라냄
+    // (hidden과 달리 clip은 sticky를 깨뜨리지 않음)
+    overflow-x: clip;
     #intro {
         width: 100%;
         background: url('@/assets/img/img-intro-bg.svg') no-repeat center 70%;
@@ -64,6 +67,10 @@
                 flex-direction: column;
                 align-items: center;
                 font-family: var(--font-primary);
+                // 오른쪽이 더 길 때 사진이 화면을 따라오도록
+                align-self: flex-start;
+                position: sticky;
+                top: 100px;
                 .intro-profile-box {
                     width: 349px;
                     background-color: var(--color-background-gray01);
@@ -106,47 +113,139 @@
                 }
             }
             .intro-contents {
+                flex: 1;
+                min-width: 0;
                 margin-left: 56px;
-                .intro-content {
-                    color: var(--color-white01);
-                    &:nth-child(2){
-                        margin-top: 40px;
+                color: var(--color-white01);
+                // 탭: 기존 배지 스타일을 그대로 살림
+                .history-tabs {
+                    display: flex;
+                    gap: 12px;
+                    margin-bottom: 28px;
+                }
+                .history-tab {
+                    width: 120px;
+                    height: 42px;
+                    font-family: var(--font-primary);
+                    font-size: 25px;
+                    color: var(--color-primary);
+                    background-color: transparent;
+                    border: 2px solid var(--color-primary);
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+                    &:hover {
+                        background-color: rgba(28, 255, 156, 0.12);
                     }
-                    span {
-                        width: 120px;
-                        height: 42px;
-                        line-height: 42px;
-                        font-family: var(--font-primary);
-                        font-size: 25px;
-                        display: block;
-                        text-align: center;
-                        background-color: var(--color-primary);
-                        border-radius: 8px;
-                        box-shadow: 2px 2px 0px #17A969;
+                    &.is-active {
                         color: var(--color-black01);
-                        margin-bottom: 20px;
+                        background-color: var(--color-primary);
+                        box-shadow: 2px 2px 0px #17A969;
                     }
-                    div {
-                        display: flex;
-                        align-items: flex-end;
-                        gap: 24px;
-                        h5 {
-                            font-family: var(--font-primary);
-                            font-size: 32px;
-                            font-weight: 500;
-                        }
-                        p {
-                            font-size: 24px;
-                            font-weight: 100;
-                        }
+                    &:focus-visible {
+                        outline: 2px solid var(--color-white01);
+                        outline-offset: 3px;
+                    }
+                }
+                // 아코디언
+                .history-list {
+                    border-top: 1px solid var(--color-background-gray01);
+                }
+                .history-item {
+                    border-bottom: 1px solid var(--color-background-gray01);
+                }
+                .history-head {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 24px;
+                    padding: 24px 4px;
+                    color: var(--color-white01);
+                    background: none;
+                    border: 0;
+                    text-align: left;
+                    cursor: pointer;
+                    .history-title {
+                        flex: 1;
+                        min-width: 0;
+                        font-family: var(--font-primary);
+                        font-size: 28px;
+                        font-weight: 500;
+                        transition: color 0.2s;
+                    }
+                    .history-period {
+                        font-size: 22px;
+                        font-weight: 100;
+                        white-space: nowrap;
+                    }
+                    .history-icon {
+                        flex-shrink: 0;
+                        width: 12px;
+                        height: 12px;
+                        margin: 0 6px 6px;
+                        border-right: 2px solid currentColor;
+                        border-bottom: 2px solid currentColor;
+                        transform: rotate(45deg);
+                        transition: transform 0.3s, margin 0.3s;
+                    }
+                    &:hover .history-title {
+                        color: var(--color-primary);
+                    }
+                    &:focus-visible {
+                        outline: 2px solid var(--color-primary);
+                        outline-offset: -2px;
+                        border-radius: 4px;
+                    }
+                }
+                // 높이를 몰라도 부드럽게 열리도록 grid 0fr → 1fr
+                .history-body {
+                    display: grid;
+                    grid-template-rows: 0fr;
+                    transition: grid-template-rows 0.3s ease;
+                    .history-body-inner {
+                        min-height: 0;
+                        overflow: hidden;
+                        visibility: hidden; // 닫혀 있을 때 탭 이동/스크린리더에서 제외
+                        transition: visibility 0s 0.3s;
                     }
                     ul {
+                        padding: 0 4px 24px;
                         li {
                             font-size: 20px;
-                            margin: 24px 0;
+                            line-height: 1.5;
                             padding-left: 20px;
                             position: relative;
+                            & + li {
+                                margin-top: 8px;
+                            }
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                left: 4px;
+                                top: 0.7em;
+                                width: 4px;
+                                height: 4px;
+                                background-color: var(--color-primary);
+                            }
                         }
+                    }
+                }
+                .history-item.is-open {
+                    .history-icon {
+                        transform: rotate(-135deg);
+                        margin: 6px 6px 0;
+                    }
+                    .history-body {
+                        grid-template-rows: 1fr;
+                        .history-body-inner {
+                            visibility: visible;
+                            transition: visibility 0s 0s;
+                        }
+                    }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .history-tab, .history-icon, .history-body, .history-body-inner {
+                        transition: none !important;
                     }
                 }
             }
@@ -164,6 +263,14 @@
                 gap: 48px;
                 .about-item {
                     position: relative;
+                    // 접히는 중: flex가 제목/문단을 눌러 찌그러뜨리지 않도록
+                    &.collapsing {
+                        .about-item-inner {
+                            span, h5, p {
+                                flex-shrink: 0;
+                            }
+                        }
+                    }
                     &.active {
                         .about-item-inner {
                             transition: all 0.3s;

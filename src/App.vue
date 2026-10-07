@@ -10,43 +10,68 @@
                 <img src='./assets/img/img-intro-particle05.svg' alt="particle05"/>
             </div>
             <article class="intro-title">
-                <h2>프론트엔드</h2>
+                <h2>웹퍼블리셔</h2>
                 <h2>포트폴리오</h2>
             </article>
             <div class="intro-container">
                 <article class="intro-profile">
                     <div class="intro-profile-box">
-                        <img src="./assets/img/img-intro-profile.jpg"></img>
+                        <img src="./assets/img/img-intro-profile.jpg" alt="윤경빈 프로필 사진">
                         <span>?</span>
                     </div>
                     <p>윤경빈</p>
                 </article>
                 <div class="intro-contents">
-                    <div class="intro-content">
-                        <span>수료</span>
-                        <div>
-                            <h5>프론트엔드 웹&앱 SW 개발자 양성과정</h5>
-                            <p>2024.05 ~ 2024.11</p>
-                        </div>
-                        <ul>
-                            <li>React, Next.js, Vue.js를 활용한 동적 웹 페이지 구축</li>
-                            <li>Git을 활용한 버전 관리 및 협업 개발 환경 이해</li>
-                            <li>Node.js와 Express.js를 활용한 간단한 서버 구축 및 클라이언트-서버 통신</li>
-                            <li>Firebase와 Next.js를 활용한 서버리스 웹 애플리케이션 구축</li>
-                        </ul>
+                    <div class="history-tabs" role="tablist" aria-label="이력 구분">
+                        <button
+                            v-for="(tab, t) in historyTabs"
+                            :key="tab.key"
+                            :id="`history-tab-${tab.key}`"
+                            type="button"
+                            role="tab"
+                            class="history-tab"
+                            :class="{ 'is-active': activeTab === tab.key }"
+                            :aria-selected="activeTab === tab.key"
+                            :aria-controls="`history-panel-${tab.key}`"
+                            :tabindex="activeTab === tab.key ? 0 : -1"
+                            @click="activeTab = tab.key"
+                            @keydown="onTabKeydown($event, t)"
+                        >{{ tab.label }}</button>
                     </div>
-                    <div class="intro-content">
-                        <span>근무</span>
-                        <div>
-                            <h5>(주)필코리아테크놀로지</h5>
-                            <p>2021.06 ~ 2024.02</p>
+                    <div
+                        v-for="tab in historyTabs"
+                        v-show="activeTab === tab.key"
+                        :key="tab.key"
+                        :id="`history-panel-${tab.key}`"
+                        class="history-list"
+                        role="tabpanel"
+                        :aria-labelledby="`history-tab-${tab.key}`"
+                    >
+                        <div
+                            v-for="(item, i) in tab.items"
+                            :key="item.title"
+                            class="history-item"
+                            :class="{ 'is-open': isOpen(tab.key, i) }"
+                        >
+                            <button
+                                type="button"
+                                class="history-head"
+                                :aria-expanded="isOpen(tab.key, i)"
+                                :aria-controls="`history-body-${tab.key}-${i}`"
+                                @click="toggleItem(tab.key, i)"
+                            >
+                                <span class="history-title">{{ item.title }}</span>
+                                <span class="history-period">{{ item.period }}</span>
+                                <span class="history-icon" aria-hidden="true"></span>
+                            </button>
+                            <div :id="`history-body-${tab.key}-${i}`" class="history-body">
+                                <div class="history-body-inner">
+                                    <ul>
+                                        <li v-for="task in item.tasks" :key="task">{{ task }}</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <ul>
-                            <li>웹사이트 및 애플리케이션 UI 디자인</li>
-                            <li>Adobe XD, Figma를 활용한 프로토타입 제작</li>
-                            <li>카페24 플랫폼을 활용한 자사 웹사이트 유지보수 및 콘텐츠 관리</li>
-                            <li>구글 애널리틱스를 활용한 방문자 분석 및 개선 작업</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -193,7 +218,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, onBeforeUnmount, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
@@ -203,6 +228,80 @@ import HeaderView from '@/components/HeaderView.vue';
 import FooterView from '@/components/FooterView.vue';
 import ProjectModalView from '@/components/ProjectModalView.vue';
 
+
+// 인트로 이력
+const historyTabs = [
+    {
+        key: 'career',
+        label: '경력',
+        items: [
+            {
+                title: '(주)네오엠씨',
+                period: '2025.02 ~ 2026.11',
+                tasks: [
+                    '삼성노블카운티 리뉴얼 사이트 디자인 및 퍼블리싱',
+                    '키킥 피트니스 수업프로그램 퍼블리싱',
+                    '헤지스 이벤트 페이지 디자인 및 퍼블리싱',
+                    '메르세데스-벤츠 파이낸셜 웹사이트 유지보수',
+                    'WordPress 기반 웹사이트 구축 및 유지보수',
+                ],
+            },
+            {
+                title: '(주)필코리아테크놀로지',
+                period: '2021.06 ~ 2024.02',
+                tasks: [
+                    'Adobe XD, Figma를 활용한 웹사이트 UI 디자인',
+                    '카페24 플랫폼을 활용한 자사 웹사이트 유지보수 및 콘텐츠 관리',
+                    '구글 애널리틱스를 활용한 방문자 분석 및 개선 작업',
+                ],
+            },
+        ],
+    },
+    {
+        key: 'education',
+        label: '교육',
+        items: [
+            {
+                title: '프론트엔드 웹&앱 SW 개발자 양성과정',
+                period: '2024.05 ~ 2024.11',
+                tasks: [
+                    'React, Next.js, Vue.js를 활용한 동적 웹 페이지 구축',
+                    'Git을 활용한 버전 관리 및 협업 개발 환경 이해',
+                    'Node.js와 Express.js를 활용한 간단한 서버 구축 및 클라이언트-서버 통신',
+                    'Firebase와 Next.js를 활용한 서버리스 웹 애플리케이션 구축',
+                ],
+            },
+        ],
+    },
+];
+
+const activeTab = ref(historyTabs[0].key);
+// 각 탭 최근 항목 펼쳐진 상태로 시작
+const openItems = ref<Record<string, boolean>>(
+    Object.fromEntries(historyTabs.map(tab => [`${tab.key}-0`, true]))
+);
+
+const isOpen = (tabKey: string, index: number) => !!openItems.value[`${tabKey}-${index}`];
+
+function toggleItem(tabKey: string, index: number) {
+    const key = `${tabKey}-${index}`;
+    openItems.value[key] = !openItems.value[key];
+}
+
+// 탭 키보드 이동 (← → Home End)
+function onTabKeydown(e: KeyboardEvent, index: number) {
+    const last = historyTabs.length - 1;
+    let next = index;
+    if (e.key === 'ArrowRight') next = index === last ? 0 : index + 1;
+    else if (e.key === 'ArrowLeft') next = index === 0 ? last : index - 1;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = last;
+    else return;
+
+    e.preventDefault();
+    activeTab.value = historyTabs[next].key;
+    document.getElementById(`history-tab-${historyTabs[next].key}`)?.focus();
+}
 
 const isProjectModalOpen = ref(false);
 const selectedProjectData = ref({ title: '', description: '', image: '' });
@@ -336,6 +435,13 @@ function showProjectModal(project: any) {
     document.body.classList.add('modal-open');
 }
 
+let cleanupAbout: (() => void) | null = null;
+
+onBeforeUnmount(() => {
+    cleanupAbout?.();
+    cleanupAbout = null;
+});
+
 onMounted(() => {
     // refresh
     window.addEventListener('beforeunload', () => {
@@ -383,7 +489,8 @@ onMounted(() => {
         const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
         const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
         const elAboutItemInner = document.querySelectorAll('.about-item-inner') as NodeListOf<HTMLElement>;
-        const section2Top = section2.offsetTop; // 2번째 섹션의 시작 위치
+        // 2번째 섹션의 시작 위치 (위쪽 콘텐츠 높이가 바뀌어도 맞도록 매번 계산)
+        const getSection2Top = () => section2.getBoundingClientRect().top + window.scrollY;
         const windowWidth = window.innerWidth;
         const horizontalScrollWidth = windowWidth * 2;
         const scrollDistance = elAboutItem[0].offsetWidth * 3; // 가로 스크롤 진행 거리
@@ -394,21 +501,42 @@ onMounted(() => {
         ];
         section2.style.height = scrollDistance * 1.38 + 'px';
 
+        const elAboutText = Array.from(elAboutItemInner).map(inner => inner.querySelector('p') as HTMLElement);
+        // 접히기 전 원래 문단 너비 (줄바꿈을 고정할 기준값)
+        const textWid = elAboutText.map(text => text.offsetWidth);
+        // 문단을 원래 CSS 상태로 되돌림
+        const resetText = (text: HTMLElement) => {
+            text.style.width = '';
+        };
+
         // 스크롤 위치만으로 각 아이템 상태를 계산 (이전 상태에 의존하지 않음)
         const updateItems = (offset: number) => {
             elAboutItem.forEach((item, i) => {
                 if (i >= itemWid.length) return;
                 const inner = elAboutItemInner[i];
+                const text = elAboutText[i];
                 const width = itemWid[i] * (i + 1) - offset;
 
                 if (width >= itemWid[i]) {
-                    inner.style.width = ''; // 아직 시작 전: CSS 기본 너비
+                    // 아직 시작 전: CSS 기본 상태로
+                    inner.style.width = '';
+                    inner.style.overflow = '';
+                    resetText(text);
+                    item.classList.remove('collapsing');
                     item.classList.remove('active');
                 } else if (width > 0) {
+                    // 접히는 중: 문단 너비를 고정해 줄바꿈을 유지하고, 카드 오른쪽에서 가려지게
                     inner.style.width = width + 'px';
+                    inner.style.overflow = 'hidden';
+                    item.classList.add('collapsing');
+                    text.style.width = textWid[i] + 'px';
+
                     item.classList.remove('active');
                 } else {
                     inner.style.width = '120px'; // active width
+                    inner.style.overflow = '';
+                    resetText(text);
+                    item.classList.remove('collapsing');
                     item.classList.add('active');
                 }
             });
@@ -417,6 +545,7 @@ onMounted(() => {
         // scroll controll
         const onScroll = () => {
             const scrollY = window.scrollY;
+            const section2Top = getSection2Top();
             const offset = Math.min(Math.max(scrollY - section2Top, 0), scrollDistance);
 
             if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
@@ -439,7 +568,6 @@ onMounted(() => {
             updateItems(offset);
         };
 
-        // 한 프레임에 한 번만 계산
         let ticking = false;
         const onScrollRaf = () => {
             if (ticking) return;
@@ -465,6 +593,12 @@ onMounted(() => {
         manageScrollEvent();
 
         window.addEventListener('resize', manageScrollEvent);
+
+        // 컴포넌트가 다시 마운트될 때(개발 중 HMR 등) 이전 리스너 정리
+        cleanupAbout = () => {
+            window.removeEventListener('scroll', onScrollRaf);
+            window.removeEventListener('resize', manageScrollEvent);
+        };
     }
 
     let previousWidth = window.innerWidth;
@@ -481,7 +615,12 @@ onMounted(() => {
         previousWidth = currentWidth;
     });
 
-    window.onload = init;
+    // 이미 페이지 로드가 끝난 뒤 마운트되면 load 이벤트가 다시 오지 않으므로 바로 실행
+    if (document.readyState === 'complete') {
+        init();
+    } else {
+        window.addEventListener('load', init, { once: true });
+    }
 });
 
 
