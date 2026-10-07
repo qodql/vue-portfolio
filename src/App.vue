@@ -392,42 +392,41 @@ onMounted(() => {
             elAboutItemInner[0].offsetWidth,
             elAboutItemInner[1].offsetWidth
         ];
-        let itemCount: number = 0; 
-        let itemNum: number = 0;
-
         section2.style.height = scrollDistance * 1.38 + 'px';
+
+        // 스크롤 위치만으로 각 아이템 상태를 계산 (이전 상태에 의존하지 않음)
+        const updateItems = (offset: number) => {
+            elAboutItem.forEach((item, i) => {
+                if (i >= itemWid.length) return;
+                const inner = elAboutItemInner[i];
+                const width = itemWid[i] * (i + 1) - offset;
+
+                if (width >= itemWid[i]) {
+                    inner.style.width = ''; // 아직 시작 전: CSS 기본 너비
+                    item.classList.remove('active');
+                } else if (width > 0) {
+                    inner.style.width = width + 'px';
+                    item.classList.remove('active');
+                } else {
+                    inner.style.width = '120px'; // active width
+                    item.classList.add('active');
+                }
+            });
+        };
 
         // scroll controll
         const onScroll = () => {
             const scrollY = window.scrollY;
+            const offset = Math.min(Math.max(scrollY - section2Top, 0), scrollDistance);
 
             if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'fixed';
                 horizontalScroll.style.top = '25vh';
-
-                const progress = (scrollY - section2Top) / scrollDistance;
-                const translateX = -progress * (horizontalScrollWidth - windowWidth);
-
-                if (translateX > 0) {
-                    horizontalScroll.style.transform = `translateX(${translateX}px)`;
-                } else {
-                    itemNum = (itemWid[itemCount] * (itemCount + 1)) - (scrollY - section2Top);
-                    if (itemNum > 0) { //450px 이상일때 active 발동
-                        elAboutItemInner[itemCount].style.width = itemNum + 'px';
-                        elAboutItem[itemCount].classList.remove('active');
-                    } else {
-                        elAboutItemInner[itemCount].style.width = '120px'; //active width
-                        elAboutItem[itemCount].classList.add('active');
-                    }
-                    if (elAboutItem[itemCount].classList.contains('active')) {
-                        itemCount = 1;
-                    } else {
-                        itemCount = 0;
-                    }
-                }
+                horizontalScroll.style.transform = 'translateX(0)'; // 진입 전 남은 translate 제거
             } else if (scrollY > section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'absolute';
                 horizontalScroll.style.top = `calc(25vh + ${scrollDistance}px)`;
+                horizontalScroll.style.transform = 'translateX(0)';
             } else {
                 horizontalScroll.style.position = 'absolute';
                 horizontalScroll.style.top = '25vh';
@@ -436,6 +435,19 @@ onMounted(() => {
                 const translateX = -progress * (horizontalScrollWidth - windowWidth);
                 horizontalScroll.style.transform = `translateX(${translateX}px)`;
             }
+
+            updateItems(offset);
+        };
+
+        // 한 프레임에 한 번만 계산
+        let ticking = false;
+        const onScrollRaf = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                onScroll();
+                ticking = false;
+            });
         };
 
         // scroll event
@@ -443,9 +455,10 @@ onMounted(() => {
             const currentWidth = window.innerWidth;
 
             if (currentWidth > 1200) {
-                window.addEventListener('scroll', onScroll);
+                window.addEventListener('scroll', onScrollRaf);
+                onScroll();
             } else {
-                window.removeEventListener('scroll', onScroll);
+                window.removeEventListener('scroll', onScrollRaf);
             }
         };
 
