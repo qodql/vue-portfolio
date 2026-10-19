@@ -200,6 +200,7 @@
                             <p class="project-item-title">{{ project.title }}</p>
                             <p>{{ project.description }}</p>
                             <div class="kind">
+                                <span v-if="project.isWork" class="work">실무</span>
                                 <span v-if="project.isWeb">PC</span>
                                 <span v-if="project.isResponsive" class="reaction">반응형</span>
                                 <span v-if="project.isMobile" class="mobile">모바일</span>
@@ -307,6 +308,34 @@ const isProjectModalOpen = ref(false);
 const selectedProjectData = ref({ title: '', description: '', image: '' });
 
 const projects = [
+    {
+        title: '삼성노블카운티',
+        description: '웹사이트 리뉴얼',
+        image: new URL('./assets/img/img-project-noble.jpg', import.meta.url).href,
+        isWork: true,
+        isWeb: true,
+        isResponsive: true,
+        logo: new URL('./assets/img/logo/noble.svg', import.meta.url).href,
+        logoWidth: 128,
+        person: '1명',
+        site: 'https://www.samsungnc.com/kor/noble-county/main/main.html',
+        contribute: [
+            '<p>(주)네오엠씨 재직 중 진행한 실무 프로젝트로, 메인 페이지와 입주상담 페이지의 리뉴얼 디자인과 퍼블리싱을 단독으로 담당했습니다.</p>',
+            '<p>시니어 사용자를 고려해 큰 글자 크기와 명확한 대비로 메인 화면을 재설계했습니다.</p>',
+            '<p>디자인 시안부터 마크업까지 직접 작업해 디자인 의도를 그대로 구현하고, PC와 모바일 환경에 맞는 반응형 레이아웃을 적용했습니다.</p>',
+            '<p>기존 PHP 기반 사이트의 구조를 유지한 채 마크업을 새로 작성하고, 뉴스 영역은 공지 게시판 데이터를 불러와 최신 글이 자동으로 노출되도록 반복문으로 연동했습니다.</p>',
+        ],
+        skills: [
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-sass.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-swiper.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-jquery.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-php.svg', import.meta.url).href,
+        ],
+    },
     { 
         title: '다온', 
         description: '웹 리뉴얼 프로젝트', 

@@ -2,7 +2,11 @@
     <div class="project-modal" @click="closeProjectModal">
         <div class="project-modal-inner" @click.stop>
             <figure>
-                <img v-if="props.projectData.logo" :src="props.projectData.logo" :alt="props.projectData.title">
+                <img v-if="props.projectData.logo" 
+                    :src="props.projectData.logo" 
+                    :alt="props.projectData.title"
+                    :style="props.projectData.logoWidth ? { maxWidth: props.projectData.logoWidth + 'px' } : undefined"
+                >
             </figure>
             <div class="project-modal-top">
                 <div class="project-modal-type project-modal-title">
@@ -14,8 +18,8 @@
                     <span>{{ props.projectData.person }}</span>
                 </div>
                 <div class="project-modal-button">
-                    <button><a :href="props.projectData.site" target="_blank">site</a></button>
-                    <button><a :href="props.projectData.git" target="_blank">github</a></button>
+                    <button v-if="props.projectData.site"><a :href="props.projectData.site" target="_blank" rel="noopener noreferrer">site</a></button>
+                    <button v-if="props.projectData.git"><a :href="props.projectData.git" target="_blank" rel="noopener noreferrer">github</a></button>
                 </div>
             </div>
             <div class="project-modal-contribute project-modal-title">
