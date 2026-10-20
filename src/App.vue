@@ -203,6 +203,7 @@
                                 <span v-if="project.isWork" class="work">실무</span>
                                 <span v-if="project.isWeb">PC</span>
                                 <span v-if="project.isResponsive" class="reaction">반응형</span>
+                                <span v-if="project.isTablet" class="tablet">태블릿</span>
                                 <span v-if="project.isMobile" class="mobile">모바일</span>
                             </div>
                         </div>
@@ -310,7 +311,7 @@ const selectedProjectData = ref({ title: '', description: '', image: '' });
 const projects = [
     {
         title: '삼성노블카운티',
-        description: '웹사이트 리뉴얼',
+        description: '웹 리뉴얼 프로젝트',
         image: new URL('./assets/img/img-project-noble.jpg', import.meta.url).href,
         isWork: true,
         isWeb: true,
@@ -334,6 +335,28 @@ const projects = [
             new URL('./assets/img/icon/icon-project-jquery.svg', import.meta.url).href,
             new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
             new URL('./assets/img/icon/icon-project-php.svg', import.meta.url).href,
+        ],
+    },
+    {
+        title: '헤지스',
+        description: '한글 이름 추천 이벤트 페이지',
+        image: new URL('./assets/img/img-project-hazzys.jpg', import.meta.url).href,
+        isWork: true,
+        isTablet: true,
+        logo: new URL('./assets/img/logo/hazzys.svg', import.meta.url).href,
+        person: '1명',
+        contribute: [
+            '<p>외국인 방문객이 이름을 입력하면 발음이 비슷한 한글 이름 3개를 추천받고, 선택한 이름을 카드 이미지로 받아볼 수 있는 3단계 이벤트 페이지를 디자인하고 구현했습니다.</p>',
+            '<p>워드프레스 코드 스니펫으로 REST API 엔드포인트를 만들어 Claude API를 연동하고, 이름 생성 규칙은 별도 스킬 파일로 분리해 코드 수정 없이 관리할 수 있도록 구성했습니다.</p>',
+            '<p>영어·중국어·일본어 페이지를 분리해 언어별로 입력 검증과 이름 표기를 적용하고, 선택한 이름은 카드 이미지를 만들어 이메일로 발송했습니다.</p>',
+        ],
+        skills: [
+            new URL('./assets/img/icon/icon-project-html.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-css.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-figma.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-js.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-php.svg', import.meta.url).href,
+            new URL('./assets/img/icon/icon-project-anthropic.svg', import.meta.url).href,
         ],
     },
     { 
