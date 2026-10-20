@@ -1,8 +1,6 @@
 .main {
     width: 100%;
     background-color: var(--color-background-black01);
-    // 화면 밖에 대기 중인 인터뷰 컨테이너 때문에 생기는 가로 넘침을 잘라냄
-    // (hidden과 달리 clip은 sticky를 깨뜨리지 않음)
     overflow-x: clip;
     #intro {
         width: 100%;

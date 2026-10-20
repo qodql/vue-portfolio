@@ -10,7 +10,7 @@
         width: 600px;
         height: auto;
         max-height: calc(100vh - 40px);
-        overflow-y: auto;  
+        overflow-y: auto;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -31,13 +31,15 @@
             }
         }
         .project-modal-title {
-            p {
-                font-size: 24px;
-                font-weight: 500;
+            > p {
+                font-size: 20px;
+                font-family: var(--font-primary);
+                color: var(--color-black01);
             }
             span {
+                font-size: 18px;
+                font-weight: 400;
                 color: var(--color-black02);
-                font-size: 20px;
                 padding-top: 16px;
             }
         }
@@ -66,13 +68,12 @@
                     &:hover {
                         background: url('@/assets/img/img-project-button-hover.svg') no-repeat top;
                         background-size: 40px;
-                        transition: 0.3s;
                     }
                     a {
-                        font-size: 24px;
+                        font-size: 20px;
                         font-family: var(--font-primary);
-                        color: var(--color-black02);
-                        padding-top: 45px;
+                        color: var(--color-black01);
+                        padding-top: 36px;
                     }
                 }
             }
@@ -80,7 +81,9 @@
         .project-modal-contribute {
             .project-modal-contribute-cont {
                 p {
-                    font-size: 20px;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 1.5;
                     color: var(--color-black02);
                     padding-top: 12px;
                 }
@@ -101,18 +104,16 @@
     .project-modal {
         .project-modal-inner {
             width: 560px;
-            height: auto;
             padding: 28px;
             gap: 28px;
             figure {
                 height: 32px;
             }
             .project-modal-title {
-                p {
-                    font-size: 20px;
+                > p {
+                    font-size: 18px;
                 }
                 span {
-                    font-size: 18px;
                     padding-top: 12px;
                 }
             }
@@ -125,16 +126,8 @@
                             background-size: 34px;
                         }
                         a {
-                            font-size: 20px;
-                            padding-top: 36px;
+                            padding-top: 32px;
                         }
-                    }
-                }
-            }
-            .project-modal-contribute {
-                .project-modal-contribute-cont {
-                    p {
-                        font-size: 18px;
                     }
                 }
             }
@@ -154,15 +147,14 @@
     .project-modal {
         .project-modal-inner {
             width: 460px;
-            height: auto;
             padding: 40px 24px;
             gap: 16px;
             figure {
                 height: 24px;
             }
             .project-modal-title {
-                p {
-                    font-size: 18px;
+                > p {
+                    font-size: 16px;
                 }
                 span {
                     font-size: 16px;
@@ -208,15 +200,14 @@
     .project-modal {
         .project-modal-inner {
             width: 360px;
-            height: auto;
             padding: 28px 16px;
             gap: 12px;
             .project-modal-title {
-                p {
-                    font-size: 16px;
+                > p {
+                    font-size: 15px;
                 }
                 span {
-                    font-size: 14px;
+                    font-size: 15px;
                 }
             }
             .project-modal-top {
@@ -228,7 +219,7 @@
                             background-size: 26px;
                         }
                         a {
-                            font-size: 16px;
+                            font-size: 15px;
                             padding-top: 24px;
                         }
                     }
