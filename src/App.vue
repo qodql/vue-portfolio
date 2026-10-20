@@ -345,6 +345,8 @@ const projects = [
         isTablet: true,
         logo: new URL('./assets/img/logo/hazzys.svg', import.meta.url).href,
         person: '1명',
+        site: 'https://hazzys-kname-demo.vercel.app',
+        git: 'https://github.com/qodql/hazzys-kname-demo',
         contribute: [
             '<p>외국인 방문객이 이름을 입력하면 발음이 비슷한 한글 이름 3개를 추천받고, 선택한 이름을 카드 이미지로 받아볼 수 있는 3단계 이벤트 페이지를 디자인하고 구현했습니다.</p>',
             '<p>워드프레스 코드 스니펫으로 REST API 엔드포인트를 만들어 Claude API를 연동하고, 이름 생성 규칙은 별도 스킬 파일로 분리해 코드 수정 없이 관리할 수 있도록 구성했습니다.</p>',
