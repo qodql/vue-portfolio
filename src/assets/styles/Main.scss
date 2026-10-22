@@ -302,10 +302,6 @@
                         text-overflow: ellipsis;
                         position: relative;
                         span, h5, p {
-                            // position: absolute; 
-                            // top: 50%; 
-                            // left: 50%; 
-                            // transform: translate(-50%, -50%);
                             overflow: hidden;
                         }
                         span {
@@ -368,15 +364,6 @@
                     gap: 20px;
                     &:nth-child(2) {
                         width: 416px;
-                        .skill-item-contents {
-                            ul {
-                                li {
-                                    p {
-                                        width: 70%;
-                                    }
-                                }
-                            }
-                        }
                     }
                     .skill-item-title {
                         width: 100%;
@@ -413,23 +400,26 @@
                                 align-items: center;
                                 justify-content: center;
                                 p {
-                                    width: 70%;
                                     position: relative;
-                                    text-align: center;
-                                    &:hover {
-                                        background: none;
-                                        &::before {
-                                            width: 12px;
-                                            height: 12px;
-                                            content: '';
-                                            position: absolute;
-                                            top: 8px;
-                                            left: -9px;
-                                            background: url('@/assets/img/icon/icon-about-select.svg') no-repeat center;
-                                        }
+                                    &::before {
+                                        content: '';
+                                        width: 12px;
+                                        height: 12px;
+                                        position: absolute;
+                                        top: 50%;
+                                        right: 100%;
+                                        margin-right: 12px;
+                                        background: url('@/assets/img/icon/icon-about-select.svg') no-repeat center;
+                                        opacity: 0;
+                                        transform: translate(-4px, -50%);
                                     }
                                 }
-                                
+                                @media (hover: hover) {
+                                    &:hover p::before {
+                                        opacity: 1;
+                                        transform: translate(0, -50%);
+                                    }
+                                }
                             }
                         }
                     }
