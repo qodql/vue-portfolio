@@ -10,6 +10,7 @@
         .particle {
             width: 100%;
             position: relative;
+            pointer-events: none;
             img {
                 position: absolute;
                 left: 50%;
@@ -60,12 +61,13 @@
             max-width: var(--pc);
             margin: 0 auto;
             display: flex;
+            position: relative;
+            z-index: 1;
             .intro-profile {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 font-family: var(--font-primary);
-                // 오른쪽이 더 길 때 사진이 화면을 따라오도록
                 align-self: flex-start;
                 position: sticky;
                 top: 100px;
@@ -115,7 +117,6 @@
                 min-width: 0;
                 margin-left: 56px;
                 color: var(--color-white01);
-                // 탭: 기존 배지 스타일을 그대로 살림
                 .history-tabs {
                     display: flex;
                     gap: 12px;
@@ -145,7 +146,6 @@
                         outline-offset: 3px;
                     }
                 }
-                // 아코디언
                 .history-list {
                     border-top: 1px solid var(--color-background-gray01);
                 }
@@ -195,7 +195,6 @@
                         border-radius: 4px;
                     }
                 }
-                // 높이를 몰라도 부드럽게 열리도록 grid 0fr → 1fr
                 .history-body {
                     display: grid;
                     grid-template-rows: 0fr;
@@ -203,7 +202,7 @@
                     .history-body-inner {
                         min-height: 0;
                         overflow: hidden;
-                        visibility: hidden; // 닫혀 있을 때 탭 이동/스크린리더에서 제외
+                        visibility: hidden;
                         transition: visibility 0s 0.3s;
                     }
                     ul {
@@ -261,7 +260,6 @@
                 gap: 48px;
                 .about-item {
                     position: relative;
-                    // 접히는 중: flex가 제목/문단을 눌러 찌그러뜨리지 않도록
                     &.collapsing {
                         .about-item-inner {
                             span, h5, p {
@@ -294,7 +292,7 @@
                     }
                     .about-item-inner {
                         width: 866px;
-                        height: 50vh;
+                        min-height: 50vh;
                         color: var(--color-white01);
                         background-color: rgba(#45474B, 0.35);
                         border-radius: 8px;
@@ -337,7 +335,6 @@
                         p {
                             font-size: 24px;
                             padding-top: 30px;
-                            max-height: 236px;
                         }
                     }
                 }

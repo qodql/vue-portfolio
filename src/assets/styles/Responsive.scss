@@ -8,31 +8,14 @@
                     }
                     &:nth-child(3) {
                         left: calc(50% - 48vw);
-                        bottom: calc(50% - 134vh);
-                    }
-                    &:nth-child(4) {
-                       //bottom: calc(50% - 55vh);
+                        bottom: calc(50% - 130vh);
                     }
                     &:nth-child(5) {
+                        left: calc(50% + 42vw);
                         bottom: calc(50% - 115vh);
                     }
                 }
             } 
-        }
-        #about {
-            .about-container {
-                .about-list {
-                    .about-item {
-                        .about-item-inner {
-                            p {
-                                height: 236px;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                            }
-                        }
-                    }
-                }
-            }
         }
         #project {
             .project-container {
@@ -55,6 +38,12 @@
             .particle {
                 img {
                     width: 60px;
+                     &:nth-child(3) {
+                        display: none;
+                    }
+                    &:nth-child(5) {
+                        display: none;
+                    }
                 }
             } 
         }
@@ -64,16 +53,7 @@
 @media (max-width: 1200px) {
     .main {
         #intro {
-            .particle {
-                img {
-                    &:nth-child(3) {
-                        bottom: calc(50% - 123vh);
-                    }
-                    &:nth-child(5) {
-                        left: calc(50% + 40vw);
-                    }
-                }
-            } 
+            padding: 80px 60px;
             .intro-title {
                 h2 {
                     font-size: 100px;
@@ -127,13 +107,14 @@
                     flex-direction: column;
                     gap: 36px;
                     .about-item {
-                        height: 320px;
+                        height: auto;
                         &.active {
                             display: none;
                         }
                         .about-item-inner {
                             width: 100%;
-                            height: 100%;
+                            height: auto;
+                            min-height: 0;
                             padding: 32px;
                             span {
                                 font-size: 36px;
@@ -210,14 +191,9 @@
                     &:nth-child(1) {
                        width: 40px;
                     }
-                    &:nth-child(5) {
-                        bottom: calc(50% - 104vh);
-                        left: calc(50% + 43vw);
-                    }
                 }
             } 
             .intro-container {
-                margin: 0 28px;
                 .intro-profile {
                     .intro-profile-box {
                         width: 280px;
@@ -246,7 +222,6 @@
                 .about-list {
                     gap: 32px;
                     .about-item {
-                        height: 300px;
                         .about-item-inner {
                             padding: 28px;
                             span {
@@ -348,11 +323,28 @@
     }
 }
 
+@media (max-width: 920px) and (min-width: 761px) {
+    .main {
+        #intro {
+            .intro-container {
+                .intro-contents {
+                    .history-head {
+                        .history-period {
+                            .period-century {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 880px) {
     .main {
         #skill {
             .skill-container {
-              
                 .skill-inner {
                     gap: 12px;
                     .skill-item {
@@ -392,7 +384,7 @@
 @media (max-width: 760px) {
     .main {
         #intro {
-            padding: 40px 0;
+            padding: 40px 16px;
             background-size: 250% auto;
             .particle {
                 display: none;
@@ -405,7 +397,6 @@
                 }
             } 
             .intro-container {
-                margin: 0 16px;
                 .intro-profile {
                     display: none;
                 }
@@ -423,7 +414,6 @@
                 .about-list {
                     gap: 28px;
                     .about-item {
-                        height: 280px;
                         .about-item-inner {
                             span {
                                 font-size: 28px;
@@ -540,15 +530,6 @@
 
 @media (max-width: 600px) {
     .main {
-        #about {
-            .about-container {
-                .about-list {
-                    .about-item {
-                        height: 312px;
-                    }
-                }
-            }
-        }
         #project {
             .project-container {
                 .project-list {
@@ -594,7 +575,6 @@
                 .about-list {
                     gap: 16px;
                     .about-item {
-                        height: 288px;
                         .about-item-inner {
                             padding: 20px;
                             span {
@@ -672,21 +652,6 @@
         }
     }
 }
-
-@media (max-width: 380px) {
-    .main {
-        #about {
-            .about-container {
-                .about-list {
-                    .about-item {
-                        height: 312px;
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 @media (max-width: 336px) {
     .main {

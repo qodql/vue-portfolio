@@ -37,6 +37,7 @@
                     border: 1px solid var(--color-white01);
                     border-radius: 8px;
                     cursor: pointer;
+                    transition: background-color 0.3s;
                     a {
                         font-size: 36px;
                         font-family: var(--font-primary);
@@ -44,6 +45,15 @@
                         padding: 0px 28px;
                         text-align: center;
                         display: block;
+                        transition: color 0.3s;
+                    }
+                    &:hover,
+                    &:focus-visible,
+                    &:has(:focus-visible) {
+                        background-color: var(--color-white01);
+                        a {
+                            color: var(--color-background-black03);
+                        }
                     }
                 }
             }

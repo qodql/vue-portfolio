@@ -5,16 +5,18 @@
                 <h3>감사합니다</h3>
                 <p>
                     트렌드를 반영하기 위해 항상 기술을 익히고<br>
-                    성장하는 프론트엔드 개발자가 되겠습니다.
+                    성장하는 웹퍼블리셔가 되겠습니다.
                 </p>
                 <div>
                     <button>
                         <a href="https://github.com/qodql" target="_blank">github</a>
                     </button>
                     <button>
-                        <a href="https://qodql.github.io/daon/index.html" target="_blank">site</a>
+                        <a :href="resumeUrl" download="윤경빈_이력서.pdf">resume</a>
                     </button>
-                    <button @click="copyMail"><a>contact</a></button>
+                    <button @click="copyMail">
+                        <a>contact</a>
+                    </button>
                 </div>
             </div>
             <div class="copy">
@@ -39,7 +41,9 @@ export default {
 
         const currentYear = new Date().getFullYear();
 
-        return { copyMail, currentYear };
+        const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf`;
+
+        return { copyMail, currentYear, resumeUrl };
     },
 };
 </script>
