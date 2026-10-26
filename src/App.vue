@@ -555,14 +555,12 @@ onMounted(() => {
                 const width = itemWid[i] * (i + 1) - offset;
 
                 if (width >= itemWid[i]) {
-                    // 아직 시작 전: CSS 기본 상태로
                     inner.style.width = '';
                     inner.style.overflow = '';
                     resetText(text);
                     item.classList.remove('collapsing');
                     item.classList.remove('active');
                 } else if (width > 0) {
-                    // 접히는 중: 문단 너비를 고정해 줄바꿈을 유지하고, 카드 오른쪽에서 가려지게
                     inner.style.width = width + 'px';
                     inner.style.overflow = 'hidden';
                     item.classList.add('collapsing');
@@ -588,7 +586,7 @@ onMounted(() => {
             if (scrollY >= section2Top && scrollY <= section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'fixed';
                 horizontalScroll.style.top = '25vh';
-                horizontalScroll.style.transform = 'translateX(0)'; // 진입 전 남은 translate 제거
+                horizontalScroll.style.transform = 'translateX(0)';
             } else if (scrollY > section2Top + scrollDistance) {
                 horizontalScroll.style.position = 'absolute';
                 horizontalScroll.style.top = `calc(25vh + ${scrollDistance}px)`;
@@ -631,7 +629,6 @@ onMounted(() => {
 
         window.addEventListener('resize', manageScrollEvent);
 
-        // 컴포넌트가 다시 마운트될 때(개발 중 HMR 등) 이전 리스너 정리
         cleanupAbout = () => {
             window.removeEventListener('scroll', onScrollRaf);
             window.removeEventListener('resize', manageScrollEvent);
@@ -652,7 +649,6 @@ onMounted(() => {
         previousWidth = currentWidth;
     });
 
-    // 이미 페이지 로드가 끝난 뒤 마운트되면 load 이벤트가 다시 오지 않으므로 바로 실행
     if (document.readyState === 'complete') {
         init();
     } else {
