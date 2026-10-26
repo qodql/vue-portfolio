@@ -530,7 +530,6 @@ onMounted(() => {
         const horizontalScroll = document.querySelector('.about-container') as HTMLElement;
         const elAboutItem = document.querySelectorAll('.about-item') as NodeListOf<HTMLElement>;
         const elAboutItemInner = document.querySelectorAll('.about-item-inner') as NodeListOf<HTMLElement>;
-        // 2번째 섹션의 시작 위치 (위쪽 콘텐츠 높이가 바뀌어도 맞도록 매번 계산)
         const getSection2Top = () => section2.getBoundingClientRect().top + window.scrollY;
         const windowWidth = window.innerWidth;
         const horizontalScrollWidth = windowWidth * 2;
@@ -543,14 +542,11 @@ onMounted(() => {
         section2.style.height = scrollDistance * 1.38 + 'px';
 
         const elAboutText = Array.from(elAboutItemInner).map(inner => inner.querySelector('p') as HTMLElement);
-        // 접히기 전 원래 문단 너비 (줄바꿈을 고정할 기준값)
         const textWid = elAboutText.map(text => text.offsetWidth);
-        // 문단을 원래 CSS 상태로 되돌림
         const resetText = (text: HTMLElement) => {
             text.style.width = '';
         };
 
-        // 스크롤 위치만으로 각 아이템 상태를 계산 (이전 상태에 의존하지 않음)
         const updateItems = (offset: number) => {
             elAboutItem.forEach((item, i) => {
                 if (i >= itemWid.length) return;
