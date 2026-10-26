@@ -124,7 +124,6 @@
                         </div>
                         <div class="skill-item-contents">
                             <ul>
-                                <!-- <li @click="showModal('HTML')"><p>HTML</p></li> -->
                                 <li><p>HTML</p></li>
                                 <li><p>CSS</p></li>
                                 <li><p>SCSS</p></li>
@@ -277,7 +276,7 @@ function toggleItem(tabKey: string, index: number) {
     openItems.value[key] = !openItems.value[key];
 }
 
-// 탭 키보드 이동 (← → Home End)
+// 탭 키보드 이동
 function onTabKeydown(e: KeyboardEvent, index: number) {
     const last = historyTabs.length - 1;
     let next = index;
@@ -655,7 +654,6 @@ onMounted(() => {
         window.addEventListener('load', init, { once: true });
     }
 });
-
 
 
 </script>
