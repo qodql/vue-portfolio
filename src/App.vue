@@ -64,7 +64,10 @@
                                 <span class="history-period">
                                     <template v-for="(date, i) in item.period.split(' ~ ')" :key="date">
                                         <template v-if="i"> ~ </template>
-                                        <span class="period-century">{{ date.slice(0, 2) }}</span>{{ date.slice(2) }}
+                                        <template v-if="isDate(date)">
+                                            <span class="period-century">{{ date.slice(0, 2) }}</span>{{ date.slice(2) }}
+                                        </template>
+                                        <template v-else>{{ date }}</template>
                                     </template>
                                 </span>
                                 <span class="history-icon" aria-hidden="true"></span>
@@ -225,7 +228,7 @@ const historyTabs = [
         items: [
             {
                 title: '(주)네오엠씨',
-                period: '2025.02 ~ 2026.11',
+                period: '2025.02 ~ 재직중',
                 tasks: [
                     '삼성노블카운티 리뉴얼 사이트 디자인 및 퍼블리싱',
                     '키킥 피트니스 수업프로그램 퍼블리싱',
@@ -262,6 +265,8 @@ const historyTabs = [
         ],
     },
 ];
+
+const isDate = (text: string) => /^\d{4}\./.test(text);
 
 const activeTab = ref(historyTabs[0].key);
 // 각 탭 최근 항목 펼쳐진 상태로 시작
