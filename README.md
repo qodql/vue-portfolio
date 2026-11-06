@@ -24,7 +24,7 @@ Vue 3와 TypeScript, SCSS로 직접 디자인하고 구현했으며, <br />
 
 ## 🔗 배포 URL
 <!-- TODO: 배포 주소 입력 -->
-<a href="https://배포주소" target="_blank">https://배포주소</a>
+<a href="https://vue-portfolio-ykb.vercel.app/" target="_blank">https://vue-portfolio-ykb.vercel.app/</a>
 <br />
 
 ## ⚙ 기술 스택
@@ -66,7 +66,7 @@ Vue 3와 TypeScript, SCSS로 직접 디자인하고 구현했으며, <br />
 
 ## 🤔 기술적 이슈와 해결 과정
 
-### 1. **코드 수정(HMR) 후 인터뷰 섹션이 사라지는 문제**
+### 1. **코드 수정 후 인터뷰 섹션이 사라지는 문제**
 
  - 문제: 인터뷰 인터랙션의 초기화가 `window.onload`에만 연결되어 있어, 개발 중 코드를 수정하면 다시 실행되지 않고 섹션이 사라졌습니다.
 
@@ -84,23 +84,6 @@ Vue 3와 TypeScript, SCSS로 직접 디자인하고 구현했으며, <br />
 
  - 해결: 접히는 동안에는 글자 너비를 고정하고 넘치는 부분만 숨겨 줄바꿈이 일어나지 않게 했습니다. 1200px 이하에서는 카드 높이를 `auto`로 바꿔 내용 길이에 맞게 늘어나도록 수정했습니다.
 
-### 4. **프로젝트 모달이 헤더 아래에 깔리고, 내용이 길면 화면을 넘는 문제**
-
- - 문제: 모달을 열면 고정 헤더가 모달 위에 겹쳐 보였고, 설명이 긴 프로젝트는 모달이 화면 밖으로 넘쳤습니다.
-
- - 해결: 모달의 `z-index`를 헤더보다 높게 정리하고, `max-height: calc(100vh - 40px)`와 내부 스크롤을 적용해 어떤 화면에서도 모달 전체를 볼 수 있도록 했습니다.
-
-### 5. **화면 너비에 따라 경력 기간이 줄바꿈되는 문제**
-
- - 문제: 921px 미만 721px 이상 구간에서 기간(2025.02 ~ 2026.11)이 길어 회사명이 두 줄로 밀려났습니다.
-
- - 해결: 연도 앞 두 자리를 별도 `span`으로 감싸 해당 구간에서만 숨겨 `25.02 ~ 26.11` 형태로 줄였습니다. '재직중'처럼 날짜가 아닌 값은 그대로 표시되도록 날짜 형식인지 확인하는 조건을 추가했습니다.
-
-### 6. **보유 기술 hover 아이콘이 글자와 떨어져 보이는 문제**
-
- - 문제: 아이콘이 `p` 태그 너비 기준으로 배치되어, 짧은 기술 이름일수록 아이콘이 글자와 멀리 떨어져 보였습니다.
-
- - 해결: `p`의 너비를 글자 길이에 맞추고, `::before`를 `right: 100%`로 글자 바로 왼쪽에 붙였습니다. 세로 위치는 `top: 50%`와 `translateY(-50%)`로 맞춰 글자 크기가 바뀌어도 가운데에 오도록 했습니다.
 <br />
 
 ##  :file_folder: 폴더 구조
@@ -112,22 +95,22 @@ Vue 3와 TypeScript, SCSS로 직접 디자인하고 구현했으며, <br />
  ┣ 📂src
  ┃ ┣ 📂assets
  ┃ ┃ ┣ 📂fonts                 # DungGeunMo, PyeongChangPeace, SpoqaHanSansNeo
- ┃ ┃ ┣ 📂img                   # 인트로·프로젝트 이미지, 로고, 아이콘
+ ┃ ┃ ┣ 📂img                   # 이미지, 로고, 아이콘
  ┃ ┃ ┗ 📂styles
  ┃ ┃   ┣ 📜variables.scss      # 색상·폰트·컨테이너 너비 CSS 변수
  ┃ ┃   ┣ 📜Header.scss
  ┃ ┃   ┣ 📜Main.scss           # 인트로·인터뷰·기술·프로젝트
  ┃ ┃   ┣ 📜Footer.scss
  ┃ ┃   ┣ 📜Modal.scss
- ┃ ┃   ┗ 📜Responsive.scss     # 1600 ~ 336px 반응형
+ ┃ ┃   ┗ 📜Responsive.scss     # 반응형 스타일
  ┃ ┣ 📂components
- ┃ ┃ ┣ 📜HeaderView.vue        # 내비게이션, 모바일 메뉴
- ┃ ┃ ┣ 📜FooterView.vue        # GitHub·이력서·이메일 복사
+ ┃ ┃ ┣ 📜HeaderView.vue        # 헤더: 내비게이션, 모바일 메뉴
+ ┃ ┃ ┣ 📜FooterView.vue        # 푸터: GitHub·이력서·이메일 복사
  ┃ ┃ ┗ 📜ProjectModalView.vue  # 프로젝트 상세 모달
  ┃ ┣ 📜App.vue                 # 섹션 구성, 경력·프로젝트 데이터, 인터랙션
  ┃ ┗ 📜main.ts
  ┣ 📜index.html
- ┣ 📜vite.config.ts            # @ 경로 별칭, SCSS 공통 import
+ ┣ 📜vite.config.ts           
  ┗ 📜README.md
 </code>
 </pre>
